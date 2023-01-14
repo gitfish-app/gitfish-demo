@@ -5,19 +5,16 @@ import AbsoluteImage from '../../components/reuse/AbsoluteImage';
 import AbsoluteBox from '../../components/reuse/AbsoluteBox';
 import { Text, useDisclosure } from '@chakra-ui/react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import amountOfCurrentWaterAtom from '../../atoms/amountOfCurrentWaterAtom';
-import amountOfGoalAtom from '../../atoms/amountOfGoalAtom';
+import amountOfCurrentWaterAtom from '../../state/amountOfCurrentWaterAtom';
 import DrinkModal from '../../components/mobile/DrinkModal';
+import Aquarium from '../../components/mobile/Aquarium';
+import achievementRateSelector from '../../state/AchievementRateSelector';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
-  const amountOfGoal = useRecoilValue(amountOfGoalAtom);
-
-  const achievementRate = Math.round(
-    (amountOfCurrentWater / amountOfGoal) * 100,
-  );
+  const achievementRate = useRecoilValue(achievementRateSelector);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -25,11 +22,14 @@ const Index: NextPage = () => {
     <MobileWrap>
       <DrinkModal {...{ isOpen, onClose, setAmountCurrentWater }} />
 
+      <Aquarium />
+
       <AbsoluteBox
         color={'white'}
         textAlign={'center'}
         top={'80px'}
         isHorizontalCenter
+        zIndex={'10'}
       >
         <Text fontWeight={'bold'} fontSize={'46px'} whiteSpace={'nowrap'}>
           {amountOfCurrentWater}ml
@@ -47,12 +47,13 @@ const Index: NextPage = () => {
         w={'46px'}
         h={'46px'}
         bgImage={'/assets/system-button-hamburger.png'}
+        zIndex={'10'}
       />
       <AbsoluteButton
         onClick={onOpen}
         bottom={'40px'}
         isHorizontalCenter
-        zIndex={1}
+        zIndex={10}
         filter={'drop-shadow(0px 0px 7px #170E7B);'}
         w={'74px'}
         h={'74px'}
@@ -62,10 +63,12 @@ const Index: NextPage = () => {
         src={'/assets/mobile-bubbles.png'}
         h={'134px'}
         bottom={'95px'}
+        zIndex={5}
         isHorizontalCenter
       />
       <AbsoluteImage
         src={'/assets/mobile-home_bottom_decoration.png'}
+        zIndex={5}
         bottom={0}
       />
     </MobileWrap>

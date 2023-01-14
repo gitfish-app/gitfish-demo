@@ -3,13 +3,14 @@ import { Box, ChakraComponent } from '@chakra-ui/react';
 
 type Props = {
   isHorizontalCenter?: boolean;
-
   children?: ReactNode;
 } & ComponentProps<ChakraComponent<'div'>>;
 
 const AbsoluteButton: FC<Props> = ({
   isHorizontalCenter = false,
   children,
+  transform = undefined,
+  left = undefined,
   ...attriblute
 }) => {
   return (
@@ -18,8 +19,8 @@ const AbsoluteButton: FC<Props> = ({
       pos={'absolute'}
       bgSize={'contain'}
       {...attriblute}
-      left={isHorizontalCenter ? '50%' : undefined}
-      transform={isHorizontalCenter ? 'translateX(-50%)' : undefined}
+      left={isHorizontalCenter ? '50%' : left}
+      transform={isHorizontalCenter ? 'translateX(-50%)' : transform}
     >
       {children}
     </Box>

@@ -1,6 +1,5 @@
 import { ComponentProps, FC, useState } from 'react';
 import {
-  Box,
   Button,
   Flex,
   Modal,
