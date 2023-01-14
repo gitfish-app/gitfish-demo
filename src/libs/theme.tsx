@@ -3,6 +3,10 @@ import { extendTheme } from '@chakra-ui/react';
 const theme = extendTheme({
   styles: {
     global: {
+      html: {
+        margin: '0',
+        padding: '0',
+      },
       body: {
         fontFamily: ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
       },

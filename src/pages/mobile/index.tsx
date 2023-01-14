@@ -8,7 +8,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import amountOfCurrentWaterAtom from '../../state/amountOfCurrentWaterAtom';
 import DrinkModal from '../../components/mobile/DrinkModal';
 import Aquarium from '../../components/mobile/Aquarium';
-import achievementRateSelector from '../../state/AchievementRateSelector';
+import achievementRateSelector from '../../state/achievementRateSelector';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
