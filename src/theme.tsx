@@ -4,7 +4,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        'font-family': ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
+        fontFamily: ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
       },
     },
   },
