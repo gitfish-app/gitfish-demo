@@ -1,14 +1,17 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
 
-import theme from '../theme'
-import { AppProps } from 'next/app'
+import theme from '../libs/theme';
+import { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  )
+    <RecoilRoot>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </RecoilRoot>
+  );
 }
 
-export default MyApp
+export default MyApp;
