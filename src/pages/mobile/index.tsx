@@ -1,21 +1,30 @@
 import type { NextPage } from 'next';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
-import MobileWrap from '../../components/MobileWrap';
+import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteImage from '../../components/reuse/AbsoluteImage';
 import AbsoluteBox from '../../components/reuse/AbsoluteBox';
-import { Text } from '@chakra-ui/react';
+import { Text, useDisclosure } from '@chakra-ui/react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import amountOfWaterAtom from '../../atoms/amountOfWaterAtom';
+import amountOfCurrentWaterAtom from '../../atoms/amountOfCurrentWaterAtom';
 import amountOfGoalAtom from '../../atoms/amountOfGoalAtom';
+import DrinkModal from '../../components/mobile/DrinkModal';
 
 const Index: NextPage = () => {
-  const [amountOfWater, setAmountOfWater] = useRecoilState(amountOfWaterAtom);
+  const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
+    amountOfCurrentWaterAtom,
+  );
   const amountOfGoal = useRecoilValue(amountOfGoalAtom);
 
-  const achievementRate = Math.round((amountOfWater / amountOfGoal) * 100);
+  const achievementRate = Math.round(
+    (amountOfCurrentWater / amountOfGoal) * 100,
+  );
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <MobileWrap>
+      <DrinkModal {...{ isOpen, onClose, setAmountCurrentWater }} />
+
       <AbsoluteBox
         color={'white'}
         textAlign={'center'}
@@ -23,7 +32,7 @@ const Index: NextPage = () => {
         isHorizontalCenter
       >
         <Text fontWeight={'bold'} fontSize={'46px'} whiteSpace={'nowrap'}>
-          {amountOfWater} ml
+          {amountOfCurrentWater}ml
         </Text>
         <Text fontWeight={'medium'} fontSize={'18px'}>
           目標の
@@ -40,7 +49,7 @@ const Index: NextPage = () => {
         bgImage={'/assets/system-button-hamburger.png'}
       />
       <AbsoluteButton
-        onClick={() => setAmountOfWater(amountOfWater + 100)}
+        onClick={onOpen}
         bottom={'40px'}
         isHorizontalCenter
         zIndex={1}
