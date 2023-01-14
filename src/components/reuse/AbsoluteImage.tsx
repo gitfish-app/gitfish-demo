@@ -13,6 +13,7 @@ const AbsoluteImage: FC<Props> = ({
 }) => {
   return (
     <Img
+      pointerEvents={'none'}
       pos={'absolute'}
       {...attriblute}
       left={isHorizontalCenter ? '50%' : undefined}
