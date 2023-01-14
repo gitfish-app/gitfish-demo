@@ -11,6 +11,7 @@ const theme = extendTheme({
   semanticTokens: {
     colors: {
       text: '#16161D',
+      white: '#D3EDFB',
     },
   },
 });
