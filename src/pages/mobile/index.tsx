@@ -9,6 +9,7 @@ import amountOfCurrentWaterAtom from '../../state/amountOfCurrentWaterAtom';
 import DrinkModal from '../../components/mobile/DrinkModal';
 import Aquarium from '../../components/mobile/Aquarium';
 import achievementRateSelector from '../../state/achievementRateSelector';
+import AchievementModal from '../../components/mobile/AchievementModal';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
@@ -16,13 +17,27 @@ const Index: NextPage = () => {
   );
   const achievementRate = useRecoilValue(achievementRateSelector);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const drinkModalHandler = useDisclosure();
+  const achievementModalHandler = useDisclosure();
 
   return (
     <MobileWrap>
-      <DrinkModal {...{ isOpen, onClose, setAmountCurrentWater }} />
+      <DrinkModal
+        setAmountCurrentWater={setAmountCurrentWater}
+        {...{
+          isOpen: drinkModalHandler.isOpen,
+          onClose: drinkModalHandler.onClose,
+        }}
+      />
+      <AchievementModal
+        achievementType={'present'}
+        {...{
+          isOpen: achievementModalHandler.isOpen,
+          onClose: achievementModalHandler.onClose,
+        }}
+      />
 
-      <Aquarium />
+      <Aquarium openPresent={achievementModalHandler.onOpen} />
 
       <AbsoluteBox
         color={'white'}
@@ -50,7 +65,7 @@ const Index: NextPage = () => {
         zIndex={'10'}
       />
       <AbsoluteButton
-        onClick={onOpen}
+        onClick={drinkModalHandler.onOpen}
         bottom={'40px'}
         isHorizontalCenter
         zIndex={10}

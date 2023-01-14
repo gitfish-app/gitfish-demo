@@ -3,11 +3,15 @@ import { Box, ChakraComponent } from '@chakra-ui/react';
 
 type Props = {
   isHorizontalCenter?: boolean;
+  isVerticalCenter?: boolean;
   children?: ReactNode;
 } & ComponentProps<ChakraComponent<'div'>>;
 
 const AbsoluteBox: FC<Props> = ({
   isHorizontalCenter = false,
+  isVerticalCenter = false,
+  top,
+  left,
   children,
   ...attriblute
 }) => {
@@ -16,8 +20,12 @@ const AbsoluteBox: FC<Props> = ({
       pos={'absolute'}
       bgSize={'contain'}
       {...attriblute}
-      left={isHorizontalCenter ? '50%' : undefined}
-      transform={isHorizontalCenter ? 'translateX(-50%)' : undefined}
+      top={isVerticalCenter ? '50%' : top}
+      left={isHorizontalCenter ? '50%' : left}
+      // transform={isHorizontalCenter ? 'translateX(-50%)' : undefined}
+      transform={`translate(${isHorizontalCenter ? '-50%' : '0'}, ${
+        isVerticalCenter ? '-50%' : '0'
+      })`}
     >
       {children}
     </Box>

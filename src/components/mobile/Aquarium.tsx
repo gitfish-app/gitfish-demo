@@ -10,12 +10,14 @@ const floatingAnimation = keyframes`
   to { transform: translateY(-15px); }
 `;
 
-type Props = {} & ComponentProps<typeof Box>;
+type Props = {
+  openPresent: () => void;
+} & ComponentProps<typeof Box>;
 
 const MIN_WATER_AMOUNT = 250;
 const PADDING_TOP = 80;
 
-const Aquarium: FC<Props> = ({}) => {
+const Aquarium: FC<Props> = ({ openPresent }) => {
   const [windowHeight, setWindowHeight] = useState(0);
   const achievementRate = useRecoilValue(achievementRateSelector);
 
@@ -73,6 +75,7 @@ const Aquarium: FC<Props> = ({}) => {
         bgImage={'url(/assets/mobile-present_box.png)'}
         bgSize={'cover'}
         bgRepeat={'no-repeat'}
+        onClick={openPresent}
       />
     </AbsoluteBox>
   );
