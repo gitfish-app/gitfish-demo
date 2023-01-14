@@ -1,0 +1,66 @@
+import type { NextPage } from 'next';
+import AbsoluteButton from '../../components/reuse/AbsoluteButton';
+import MobileWrap from '../../components/MobileWrap';
+import AbsoluteImage from '../../components/reuse/AbsoluteImage';
+import AbsoluteBox from '../../components/reuse/AbsoluteBox';
+import { Text } from '@chakra-ui/react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import amountOfWaterAtom from '../../atoms/amountOfWaterAtom';
+import amountOfGoalAtom from '../../atoms/amountOfGoalAtom';
+
+const Index: NextPage = () => {
+  const [amountOfWater, setAmountOfWater] = useRecoilState(amountOfWaterAtom);
+  const amountOfGoal = useRecoilValue(amountOfGoalAtom);
+
+  const achievementRate = Math.round((amountOfWater / amountOfGoal) * 100);
+
+  return (
+    <MobileWrap>
+      <AbsoluteBox
+        color={'white'}
+        textAlign={'center'}
+        top={'80px'}
+        isHorizontalCenter
+      >
+        <Text fontWeight={'bold'} fontSize={'46px'} whiteSpace={'nowrap'}>
+          {amountOfWater} ml
+        </Text>
+        <Text fontWeight={'medium'} fontSize={'18px'}>
+          目標の
+          <Text as={'span'} fontWeight={'semibold'}>
+            {achievementRate}%
+          </Text>
+        </Text>
+      </AbsoluteBox>
+      <AbsoluteButton
+        top={'12px'}
+        right={'20px'}
+        w={'46px'}
+        h={'46px'}
+        bgImage={'/assets/system-button-hamburger.png'}
+      />
+      <AbsoluteButton
+        onClick={() => setAmountOfWater(amountOfWater + 100)}
+        bottom={'40px'}
+        isHorizontalCenter
+        zIndex={1}
+        filter={'drop-shadow(0px 0px 7px #170E7B);'}
+        w={'74px'}
+        h={'74px'}
+        bgImage={'/assets/mobile-drink_button.png'}
+      />
+      <AbsoluteImage
+        src={'/assets/mobile-bubbles.png'}
+        h={'134px'}
+        bottom={'95px'}
+        isHorizontalCenter
+      />
+      <AbsoluteImage
+        src={'/assets/mobile-home_bottom_decoration.png'}
+        bottom={0}
+      />
+    </MobileWrap>
+  );
+};
+
+export default Index;
