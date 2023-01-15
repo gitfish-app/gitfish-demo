@@ -1,4 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
+import chakraUiRadio from '../styles/chakraUiRadio';
+import reactSpringBottomSheet from '../styles/reactSpringBottomSheet';
 
 const theme = extendTheme({
   styles: {
@@ -10,6 +12,8 @@ const theme = extendTheme({
       body: {
         fontFamily: ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
       },
+      ...reactSpringBottomSheet,
+      ...chakraUiRadio,
     },
   },
   semanticTokens: {
