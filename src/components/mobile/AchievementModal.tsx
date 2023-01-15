@@ -5,7 +5,6 @@ import {
   ModalContent,
   Text,
   Button,
-  keyframes,
   Box,
 } from '@chakra-ui/react';
 import { FC, ComponentProps, useState } from 'react';
@@ -21,36 +20,18 @@ import {
   ACHIEVEMENT_ACTION_NAME,
 } from '../../constant/achievementActionTypeEnum';
 import fishProperties from '../../util/fishProperties';
+import { itemAnimation, textAnimation } from '../../styles/animations';
 
 type Props = {
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
   openBottomSheet: () => void;
 } & Omit<ComponentProps<typeof Modal>, 'children'>;
 
-const textAnimation = keyframes`
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  `;
-const itemAnimation = keyframes`
-    0% {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    50% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  `;
+const buttonStyle = {
+  width: '100%',
+  borderRadius: '16px',
+  h: '55px',
+};
 
 const AchievementModal: FC<Props> = ({
   achievementType,
@@ -87,12 +68,6 @@ const AchievementModal: FC<Props> = ({
       openBottomSheet();
       setPresentNotifications((prev) => prev.slice(1));
     },
-  };
-
-  const buttonStyle = {
-    width: '100%',
-    borderRadius: '16px',
-    h: '55px',
   };
 
   return (

@@ -1,16 +1,11 @@
-import { Box, keyframes } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { FC, ComponentProps, useEffect, useState } from 'react';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 import { useRecoilValue } from 'recoil';
 import AbsoluteButton from '../reuse/AbsoluteButton';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 import achievementRateSelector from '../../state/achievementRateSelector';
-
-const floatingAnimation = keyframes`
-  0% { transform: translateY(calc(10px - 15px)) rotate(4deg); }
-  50%{ transform: translateY(-10) rotate(-100deg);}
-  100% { transform: translateY(-15px) rotate(-2deg); }
-`;
+import { floatingAnimation } from '../../styles/animations';
 
 type Props = {
   openAchievementModal: () => void;
