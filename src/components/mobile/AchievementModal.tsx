@@ -6,8 +6,9 @@ import {
   Text,
   Button,
   keyframes,
+  Box,
 } from '@chakra-ui/react';
-import { FC, ComponentProps, useState, useEffect } from 'react';
+import { FC, ComponentProps, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import AchievementText from '../../constant/achievementTexts';
 import presentNotificationsAtom from '../../state/presentNotificationsAtom';
@@ -19,10 +20,36 @@ import {
   AchievementActionType,
   ACHIEVEMENT_ACTION_NAME,
 } from '../../constant/achievementActionTypeEnum';
+import fishProperties from '../../util/fishProperties';
 
 type Props = {
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
 } & Omit<ComponentProps<typeof Modal>, 'children'>;
+
+const textAnimation = keyframes`
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  `;
+const itemAnimation = keyframes`
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  `;
 
 const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
   const [modalPageCount, setModalPageCount] = useState(0);
@@ -60,17 +87,6 @@ const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
     borderRadius: '16px',
     h: '55px',
   };
-
-  const textAnimation = keyframes`
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  `;
 
   return (
     <Modal
@@ -126,7 +142,31 @@ const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
             w={'102px'}
             h={'105px'}
           />
+          <AbsoluteBox
+            isHorizontalCenter
+            isVerticalCenter
+            zIndex={'30'}
+            animation={`${itemAnimation} 0.5s ease-in-out forwards`}
+            opacity={'0'}
+            transform={'translate(-50%, -50%) scale(0)'}
+            key={modalPageCount}
+          >
+            {'fishId' in presentNotification ? (
+              modalPageCount === 1 && (
+                <Box
+                  as={fishProperties[presentNotification.fishId].element}
+                  size={'l'}
+                />
+              )
+            ) : (
+              <Box
+                as={fishProperties[presentNotification.skinId].element}
+                size={'l'}
+              />
+            )}
+          </AbsoluteBox>
         </AbsoluteBox>
+
         <Flex
           flexDirection={'column'}
           w={'100%'}
@@ -134,7 +174,7 @@ const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
           color={'white'}
           textAlign={'center'}
           justifyContent={'space-between'}
-          key={achievementContents.title}
+          key={modalPageCount}
         >
           <Text
             fontSize={'24px'}
@@ -144,7 +184,6 @@ const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
           >
             {achievementContents.title}
           </Text>
-
           <Text
             fontSize={'14px'}
             mb={'14px'}
