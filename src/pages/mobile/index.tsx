@@ -5,8 +5,6 @@ import AbsoluteImage from '../../components/reuse/AbsoluteImage';
 import AbsoluteBox from '../../components/reuse/AbsoluteBox';
 import {
   Box,
-  Button,
-  Checkbox,
   Flex,
   HStack,
   Radio,
@@ -31,7 +29,46 @@ import hasPresentNotificationSelector from '../../state/hasPresentNotificationSe
 import { useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import 'react-spring-bottom-sheet/dist/style.css';
-import reactSpringBottomSheet from '../../styles/reactSpringBottomSheet';
+import githubColors from '../../constant/githubColors';
+
+const repositories = [
+  {
+    id: 0,
+    name: '2022_wd2a',
+    mainLanguage: 'HTML',
+    lastUpdate: 'Oct 29',
+  },
+  {
+    id: 1,
+    name: 'gitfish-mobile',
+    mainLanguage: 'CSS',
+    lastUpdate: 'Oct 27',
+  },
+  {
+    id: 2,
+    name: 'gitfish-web',
+    mainLanguage: 'JavaScript',
+    lastUpdate: 'Oct 27',
+  },
+  {
+    id: 3,
+    name: '2023_wd3a',
+    mainLanguage: 'TypeScript',
+    lastUpdate: 'Oct 27',
+  },
+  {
+    id: 4,
+    name: 'liff-starter',
+    mainLanguage: 'Dart',
+    lastUpdate: 'Oct 27',
+  },
+  {
+    id: 5,
+    name: 'Rust',
+    mainLanguage: 'HTML',
+    lastUpdate: 'Oct 27',
+  },
+];
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
@@ -87,100 +124,54 @@ const Index: NextPage = () => {
           <TableContainer w={'100%'}>
             <Table>
               <Tbody>
-                <Tr>
-                  <Td borderColor={'rgba(112, 127, 149, 0.6)'}>
-                    <RadioGroup
-                      value={selectRepositoryIndex}
-                      onChange={setSelectRepositoryIndex}
-                    >
-                      <HStack justifyContent={'space-between'} as={'label'}>
-                        <VStack alignItems={'flex-start'}>
-                          {/* Repo */}
-                          <Text
-                            color={'#006EFB'}
-                            fontWeight={'medium'}
-                            fontSize={'18px'}
-                          >
-                            Repository Name
-                          </Text>
-                          <Flex gap={'16px'}>
-                            {/* Language Tag */}
-                            <Text color={'#707F95'} fontSize={'14px'}>
-                              <Box
-                                as={'span'}
-                                display={'inline-block'}
-                                w={'10px'}
-                                h={'10px'}
-                                mr={'8px'}
-                                borderRadius={'100%'}
-                                bgColor={'red'}
-                              />
-                              HTML
+                {repositories.map((repository) => (
+                  <Tr>
+                    <Td borderColor={'rgba(112, 127, 149, 0.6)'}>
+                      <RadioGroup
+                        value={selectRepositoryIndex}
+                        onChange={setSelectRepositoryIndex}
+                      >
+                        <HStack justifyContent={'space-between'} as={'label'}>
+                          <VStack alignItems={'flex-start'}>
+                            <Text
+                              color={'#006EFB'}
+                              fontWeight={'medium'}
+                              fontSize={'18px'}
+                            >
+                              {repository.name}
                             </Text>
-                            {/* Last update */}
-                            <Text color={'#707F95'} fontSize={'14px'}>
-                              Updated Oct 27
-                            </Text>
-                          </Flex>
-                        </VStack>
-                        <Radio
-                          value={'0'}
-                          size="md"
-                          colorScheme="white"
-                          defaultChecked
-                        />
-                      </HStack>
-                    </RadioGroup>
-                  </Td>
-                </Tr>
-                {/* ↓ 2 */}
-                <Tr>
-                  <Td borderColor={'rgba(112, 127, 149, 0.6)'}>
-                    <RadioGroup
-                      value={selectRepositoryIndex}
-                      onChange={setSelectRepositoryIndex}
-                    >
-                      <HStack justifyContent={'space-between'} as={'label'}>
-                        <VStack alignItems={'flex-start'}>
-                          {/* Repo */}
-                          <Text
-                            color={'#006EFB'}
-                            fontWeight={'medium'}
-                            fontSize={'18px'}
-                          >
-                            Repository Name
-                          </Text>
-                          <Flex gap={'16px'}>
-                            {/* Language Tag */}
-                            <Text color={'#707F95'} fontSize={'14px'}>
-                              <Box
-                                as={'span'}
-                                display={'inline-block'}
-                                w={'10px'}
-                                h={'10px'}
-                                mr={'8px'}
-                                borderRadius={'100%'}
-                                bgColor={'red'}
-                              />
-                              HTML
-                            </Text>
-                            {/* Last update */}
-                            <Text color={'#707F95'} fontSize={'14px'}>
-                              Updated Oct 27
-                            </Text>
-                          </Flex>
-                        </VStack>
-                        <Radio
-                          value={'1'}
-                          size="md"
-                          colorScheme="white"
-                          defaultChecked
-                        />
-                      </HStack>
-                    </RadioGroup>
-                  </Td>
-                </Tr>
-                {/* ↑ 2 */}
+                            <Flex gap={'16px'}>
+                              <Text color={'#707F95'} fontSize={'14px'}>
+                                <Box
+                                  as={'span'}
+                                  display={'inline-block'}
+                                  w={'10px'}
+                                  h={'10px'}
+                                  mr={'8px'}
+                                  borderRadius={'100%'}
+                                  bgColor={
+                                    githubColors[repository.mainLanguage]
+                                      .color ?? 'red'
+                                  }
+                                />
+                                {repository.mainLanguage}
+                              </Text>
+                              <Text color={'#707F95'} fontSize={'14px'}>
+                                Updated {repository.lastUpdate}
+                              </Text>
+                            </Flex>
+                          </VStack>
+                          <Radio
+                            value={'0'}
+                            size="md"
+                            colorScheme="white"
+                            defaultChecked
+                          />
+                        </HStack>
+                      </RadioGroup>
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
