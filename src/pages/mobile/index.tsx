@@ -182,7 +182,19 @@ const Index: NextPage = () => {
             h={'55px'}
             borderRadius={'18px'}
             bgColor={'#006EFB'}
+            fontWeight={'bold'}
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            gap={'8px'}
           >
+            <Box
+              as={'span'}
+              display={'inline-block'}
+              w={'30px'}
+              h={'30px'}
+              bgImage={'/assets/mobile-repository_button_icon.svg'}
+            />
             Repository Setting
           </AbsoluteButton>
         </Flex>
