@@ -120,6 +120,8 @@ const DrinkModal: FC<Props> = ({ setAmountCurrentWater, isOpen, onClose }) => {
             borderRadius={'18px'}
             fontWeight={'bold'}
             bgColor={'#006EFB'}
+            _active={{ bgColor: '#006EFB' }}
+            _hover={{ bgColor: '#006EFB' }}
             color={'white'}
             onClick={drinkWater}
             disabled={amountOfDrinkWater === 0}
