@@ -20,7 +20,11 @@ import {
   ACHIEVEMENT_ACTION_NAME,
 } from '../../constant/achievementActionTypeEnum';
 import fishProperties from '../../util/fishProperties';
-import { itemAnimation, textAnimation } from '../../styles/animations';
+import {
+  itemAnimation,
+  textAnimation,
+  newCharacterAnimation,
+} from '../../styles/animations';
 
 type Props = {
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
@@ -136,6 +140,9 @@ const AchievementModal: FC<Props> = ({
             {'fishId' in presentNotification ? (
               modalPageCount === 1 && (
                 <Box
+                  animation={`${newCharacterAnimation} 1.5s ease-in-out infinite alternate`}
+                  animationDelay={'0.5s'}
+                  transformOrigin={'center'}
                   as={fishProperties[presentNotification.fishId].element}
                   size={'l'}
                 />

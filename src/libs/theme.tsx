@@ -6,6 +6,8 @@ const theme = extendTheme({
   styles: {
     global: {
       html: {
+        backgroundColor: '#050732',
+        overflow: 'hidden',
         margin: '0',
         padding: '0',
       },

@@ -1,9 +1,13 @@
 import { keyframes } from '@chakra-ui/react';
 
 export const floatingAnimation = keyframes`
-  0% { transform: translateY(calc(10px - 15px)) rotate(4deg); }
-  50%{ transform: translateY(-10) rotate(-100deg);}
+  0% { transform: translateY(-5px) rotate(4deg); }
   100% { transform: translateY(-15px) rotate(-2deg); }
+`;
+
+export const newCharacterAnimation = keyframes`
+  0% { transform: rotate(8deg) translateY(0px); }
+  100% { transform: rotate(-2deg) translateY(5px); }
 `;
 
 export const textAnimation = keyframes`
