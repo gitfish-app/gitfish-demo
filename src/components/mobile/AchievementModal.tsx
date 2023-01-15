@@ -24,6 +24,7 @@ import fishProperties from '../../util/fishProperties';
 
 type Props = {
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
+  openBottomSheet: () => void;
 } & Omit<ComponentProps<typeof Modal>, 'children'>;
 
 const textAnimation = keyframes`
@@ -51,7 +52,12 @@ const itemAnimation = keyframes`
     }
   `;
 
-const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
+const AchievementModal: FC<Props> = ({
+  achievementType,
+  openBottomSheet,
+  isOpen,
+  onClose,
+}) => {
   const [modalPageCount, setModalPageCount] = useState(0);
   const resetPageCount = () => {
     setModalPageCount(0);
@@ -78,6 +84,7 @@ const AchievementModal: FC<Props> = ({ achievementType, isOpen, onClose }) => {
     },
     repository: () => {
       onClose();
+      openBottomSheet();
       setPresentNotifications((prev) => prev.slice(1));
     },
   };
