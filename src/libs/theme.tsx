@@ -18,6 +18,18 @@ const theme = extendTheme({
       white: '#D3EDFB',
     },
   },
+  components: {
+    Button: {
+      baseStyle: {
+        _hover: {
+          opacity: '0.9',
+        },
+        _active: {
+          opacity: '0.9',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
