@@ -10,15 +10,25 @@ import DrinkModal from '../../components/mobile/DrinkModal';
 import Aquarium from '../../components/mobile/Aquarium';
 import achievementRateSelector from '../../state/achievementRateSelector';
 import AchievementModal from '../../components/mobile/AchievementModal';
+import { useLongPress } from 'use-long-press';
+import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
   const achievementRate = useRecoilValue(achievementRateSelector);
+  const hasPresentNotification = useRecoilValue(hasPresentNotificationSelector);
 
   const drinkModalHandler = useDisclosure();
   const achievementModalHandler = useDisclosure();
+
+  const bind = useLongPress(() => {}, {
+    cancelOnMovement: true,
+    onFinish: () => {
+      drinkModalHandler.onOpen();
+    },
+  });
 
   return (
     <MobileWrap>
@@ -29,15 +39,17 @@ const Index: NextPage = () => {
           onClose: drinkModalHandler.onClose,
         }}
       />
-      <AchievementModal
-        achievementType={'present'}
-        {...{
-          isOpen: achievementModalHandler.isOpen,
-          onClose: achievementModalHandler.onClose,
-        }}
-      />
+      {hasPresentNotification && (
+        <AchievementModal
+          achievementType={'present'}
+          {...{
+            isOpen: achievementModalHandler.isOpen,
+            onClose: achievementModalHandler.onClose,
+          }}
+        />
+      )}
 
-      <Aquarium openPresent={achievementModalHandler.onOpen} />
+      <Aquarium openAchievementModal={achievementModalHandler.onOpen} />
 
       <AbsoluteBox
         color={'white'}
@@ -65,7 +77,7 @@ const Index: NextPage = () => {
         zIndex={'10'}
       />
       <AbsoluteButton
-        onClick={drinkModalHandler.onOpen}
+        {...bind()}
         bottom={'40px'}
         isHorizontalCenter
         zIndex={10}
