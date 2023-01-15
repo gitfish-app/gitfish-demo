@@ -80,7 +80,7 @@ const OriginalBottomSheet: FC<Props> = ({ isOpenBottomSheet }) => {
           <Table>
             <Tbody>
               {repositories.map((repository) => (
-                <Tr>
+                <Tr key={repository.id}>
                   <Td borderColor={'rgba(112, 127, 149, 0.6)'}>
                     <RadioGroup
                       value={selectRepositoryIndex}
