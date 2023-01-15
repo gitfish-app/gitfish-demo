@@ -122,6 +122,7 @@ const DrinkModal: FC<Props> = ({ setAmountCurrentWater, isOpen, onClose }) => {
             bgColor={'#006EFB'}
             color={'white'}
             onClick={drinkWater}
+            disabled={amountOfDrinkWater === 0}
           >
             Drink
           </Button>

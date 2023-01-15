@@ -2,24 +2,27 @@ import { Box, keyframes } from '@chakra-ui/react';
 import { FC, ComponentProps, useEffect, useState } from 'react';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 import { useRecoilValue } from 'recoil';
-import achievementRateSelector from '../../state/achievementRateSelector';
 import AbsoluteButton from '../reuse/AbsoluteButton';
+import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
+import achievementRateSelector from '../../state/achievementRateSelector';
 
 const floatingAnimation = keyframes`
-  from { transform: translateY(calc(10px - 15px)); }
-  to { transform: translateY(-15px); }
+  0% { transform: translateY(calc(10px - 15px)) rotate(4deg); }
+  50%{ transform: translateY(-10) rotate(-100deg);}
+  100% { transform: translateY(-15px) rotate(-2deg); }
 `;
 
 type Props = {
-  openPresent: () => void;
+  openAchievementModal: () => void;
 } & ComponentProps<typeof Box>;
 
 const MIN_WATER_AMOUNT = 250;
 const PADDING_TOP = 80;
 
-const Aquarium: FC<Props> = ({ openPresent }) => {
+const Aquarium: FC<Props> = ({ openAchievementModal }) => {
   const [windowHeight, setWindowHeight] = useState(0);
   const achievementRate = useRecoilValue(achievementRateSelector);
+  const hasPresentNotification = useRecoilValue(hasPresentNotificationSelector);
 
   useEffect(() => {
     setWindowHeight(window.innerHeight);
@@ -61,22 +64,24 @@ const Aquarium: FC<Props> = ({ openPresent }) => {
         transition: 'height 0.5s',
       }}
     >
-      <AbsoluteButton
-        bottom={waterHeight}
-        left={'40px'}
-        transformOrigin={'bottom'}
-        transform={'translateY(-15px)'}
-        h={'55px'}
-        w={'50px'}
-        zIndex={'0'}
-        transition={'bottom 0.8s'}
-        transitionDelay={'0.2s'}
-        animation={`${floatingAnimation} 1.5s ease-in-out infinite alternate`}
-        bgImage={'url(/assets/mobile-present_box.png)'}
-        bgSize={'cover'}
-        bgRepeat={'no-repeat'}
-        onClick={openPresent}
-      />
+      {hasPresentNotification && (
+        <AbsoluteButton
+          bottom={waterHeight}
+          left={'40px'}
+          transformOrigin={'bottom'}
+          transform={'translateY(-15px) rotate(0deg)'}
+          h={'55px'}
+          w={'50px'}
+          zIndex={'0'}
+          transition={'bottom 0.8s'}
+          transitionDelay={'0.2s'}
+          animation={`${floatingAnimation} 1.5s ease-in-out infinite alternate`}
+          bgImage={'url(/assets/mobile-present_box.png)'}
+          bgSize={'cover'}
+          bgRepeat={'no-repeat'}
+          onClick={openAchievementModal}
+        />
+      )}
     </AbsoluteBox>
   );
 };
