@@ -64,8 +64,8 @@ const repositories = [
   },
   {
     id: 5,
-    name: 'Rust',
-    mainLanguage: 'HTML',
+    name: 'bat-fish',
+    mainLanguage: 'Rust',
     lastUpdate: 'Oct 27',
   },
 ];
@@ -162,7 +162,7 @@ const Index: NextPage = () => {
                             </Flex>
                           </VStack>
                           <Radio
-                            value={'0'}
+                            value={repository.id.toString()}
                             size="md"
                             colorScheme="white"
                             defaultChecked
