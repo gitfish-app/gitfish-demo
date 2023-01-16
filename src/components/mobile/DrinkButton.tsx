@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import AbsoluteButton from '../reuse/AbsoluteButton';
 import { useLongPress } from 'use-long-press';
+import sleep from '../../util/sleep';
 
 type Props = {
   onOpen: () => void;
@@ -8,7 +9,8 @@ type Props = {
 const DrinkButton: FC<Props> = ({ onOpen }) => {
   const longPressBind = useLongPress(() => {}, {
     cancelOnMovement: true,
-    onFinish: () => {
+    onFinish: async () => {
+      await sleep(0.1);
       onOpen();
     },
   });
