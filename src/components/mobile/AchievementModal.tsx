@@ -137,12 +137,12 @@ const AchievementModal: FC<Props> = ({
             transform={'translate(-50%, -50%) scale(0)'}
             key={modalPageCount}
           >
-            {'fishId' in presentNotification ? (
+            {'characterId' in presentNotification ? (
               modalPageCount === 1 && (
                 <Box
                   animation={`${newCharacterAnimation} 1.5s ease-in-out infinite alternate`}
                   transformOrigin={'center'}
-                  as={fishProperties[presentNotification.fishId].element}
+                  as={fishProperties[presentNotification.characterId].element}
                   size={'l'}
                 />
               )

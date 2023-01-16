@@ -90,7 +90,12 @@ const Index: NextPage = () => {
         />
       )}
 
-      <RepositorySelectBottomSheet isOpenBottomSheet={isOpenBottomSheet} />
+      <RepositorySelectBottomSheet
+        isOpenBottomSheet={isOpenBottomSheet}
+        closeBottomSheet={() => {
+          setIsOpenBottomSheet(false);
+        }}
+      />
     </MobileWrap>
   );
 };
