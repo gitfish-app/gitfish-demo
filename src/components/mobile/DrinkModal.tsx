@@ -55,7 +55,7 @@ const DrinkModal: FC<Props> = ({ setAmountCurrentWater, isOpen, onClose }) => {
           right={'20px'}
           w={'46px'}
           h={'46px'}
-          bgImage={'/assets/system-button-close.png'}
+          bgImage={'/assets/system-button_close.png'}
         />
         <AbsoluteBox
           display={'flex'}

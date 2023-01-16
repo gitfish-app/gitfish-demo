@@ -14,7 +14,7 @@ import hasPresentNotificationSelector from '../../state/hasPresentNotificationSe
 import { useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
-import CollectionModal from '../../components/mobile/CollectionModal';
+import HamburgerModal from '../../components/mobile/HamburgerModal';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
@@ -25,7 +25,7 @@ const Index: NextPage = () => {
 
   const drinkModalHandler = useDisclosure();
   const achievementModalHandler = useDisclosure();
-  const collectionModalHandler = useDisclosure();
+  const hamburgerModalHandler = useDisclosure();
 
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
 
@@ -69,14 +69,14 @@ const Index: NextPage = () => {
         right={'20px'}
         w={'46px'}
         h={'46px'}
-        bgImage={'/assets/system-button-hamburger.png'}
+        bgImage={'/assets/system-button_hamburger.png'}
         zIndex={'10'}
-        onClick={collectionModalHandler.onOpen}
+        onClick={hamburgerModalHandler.onOpen}
       />
-      <CollectionModal
+      <HamburgerModal
         {...{
-          isOpen: collectionModalHandler.isOpen,
-          onClose: collectionModalHandler.onClose,
+          isOpen: hamburgerModalHandler.isOpen,
+          onClose: hamburgerModalHandler.onClose,
         }}
       />
 
