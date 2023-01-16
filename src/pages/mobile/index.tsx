@@ -14,6 +14,7 @@ import hasPresentNotificationSelector from '../../state/hasPresentNotificationSe
 import { useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
+import CollectionModal from '../../components/mobile/CollectionModal';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
@@ -24,6 +25,7 @@ const Index: NextPage = () => {
 
   const drinkModalHandler = useDisclosure();
   const achievementModalHandler = useDisclosure();
+  const collectionModalHandler = useDisclosure();
 
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
 
@@ -49,15 +51,6 @@ const Index: NextPage = () => {
         </Text>
       </AbsoluteBox>
 
-      <AbsoluteButton
-        top={'12px'}
-        right={'20px'}
-        w={'46px'}
-        h={'46px'}
-        bgImage={'/assets/system-button-hamburger.png'}
-        zIndex={'10'}
-      />
-
       <AbsoluteImage
         src={'/assets/mobile-bubbles.png'}
         h={'134px'}
@@ -69,6 +62,22 @@ const Index: NextPage = () => {
         src={'/assets/mobile-home_bottom_decoration.png'}
         zIndex={5}
         bottom={0}
+      />
+
+      <AbsoluteButton
+        top={'12px'}
+        right={'20px'}
+        w={'46px'}
+        h={'46px'}
+        bgImage={'/assets/system-button-hamburger.png'}
+        zIndex={'10'}
+        onClick={collectionModalHandler.onOpen}
+      />
+      <CollectionModal
+        {...{
+          isOpen: collectionModalHandler.isOpen,
+          onClose: collectionModalHandler.onClose,
+        }}
       />
 
       <DrinkButton onOpen={drinkModalHandler.onOpen} />
