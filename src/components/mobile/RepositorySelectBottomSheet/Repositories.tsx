@@ -14,19 +14,20 @@ import {
 } from '@chakra-ui/react';
 import { Dispatch, FC, SetStateAction } from 'react';
 import githubColors from '../../../constant/githubColors';
+import { Repository } from '../../../mockdata/repositories';
 import Button from './Button';
-import { Repository } from './index';
 
 type Props = {
   incrementPageCount: () => void;
-  selectRepositoryIndex: string;
-  setSelectRepositoryIndex: Dispatch<SetStateAction<string>>;
+  selectRepositoryId: string;
+  setSelectRepositoryId: Dispatch<SetStateAction<string>>;
   repositories: Repository[];
 };
+
 const Repositories: FC<Props> = ({
   incrementPageCount,
-  selectRepositoryIndex,
-  setSelectRepositoryIndex,
+  selectRepositoryId,
+  setSelectRepositoryId,
   repositories,
 }) => {
   return (
@@ -35,7 +36,6 @@ const Repositories: FC<Props> = ({
       alignItems={'center'}
       h={'100%'}
       gap={'20px'}
-      color={'white'}
     >
       <Text fontWeight={'bold'} fontSize={'24px'}>
         Repository
@@ -47,8 +47,8 @@ const Repositories: FC<Props> = ({
               <Tr key={repository.id}>
                 <Td borderColor={'rgba(112, 127, 149, 0.6)'}>
                   <RadioGroup
-                    value={selectRepositoryIndex}
-                    onChange={setSelectRepositoryIndex}
+                    value={selectRepositoryId}
+                    onChange={setSelectRepositoryId}
                   >
                     <HStack justifyContent={'space-between'} as={'label'}>
                       <VStack alignItems={'flex-start'}>
@@ -81,7 +81,7 @@ const Repositories: FC<Props> = ({
                         </Flex>
                       </VStack>
                       <Radio
-                        value={repository.id.toString()}
+                        value={repository.id}
                         size="md"
                         colorScheme="white"
                         defaultChecked
@@ -98,7 +98,7 @@ const Repositories: FC<Props> = ({
         onClick={incrementPageCount}
         iconUrl={'/assets/mobile-repository_button_icon.svg'}
         buttonMessage={'Repository Setting'}
-        disabled={repositories.length === 0 || selectRepositoryIndex === ''}
+        disabled={repositories.length === 0 || selectRepositoryId === undefined}
       />
     </Flex>
   );
