@@ -24,7 +24,7 @@ const PartyGlasses: FC<Props> = ({ size = 'm', ...rest }) => (
   <Box
     {...sizeList[size]}
     {...rest}
-    viewBox={`0 0 120 80`}
+    viewBox={'0 0 122 80'}
     as="svg"
     xmlSpace="preserve"
   >

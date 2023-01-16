@@ -19,12 +19,13 @@ import {
   AchievementActionType,
   ACHIEVEMENT_ACTION_NAME,
 } from '../../constant/achievementActionTypeEnum';
-import characterProperties from '../../util/characterProperties';
+import skinProperties from '../../util/skinProperties';
 import {
   itemAnimation,
   textAnimation,
   newCharacterAnimation,
 } from '../../styles/animations';
+import characterProperties from '../../util/characterProperties';
 
 type Props = {
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
@@ -149,10 +150,7 @@ const AchievementModal: FC<Props> = ({
                 />
               )
             ) : (
-              <Box
-                as={characterProperties[presentNotification.skinId].element}
-                size={'l'}
-              />
+              <Box as={skinProperties[presentNotification.skinId].element} />
             )}
           </AbsoluteBox>
         </AbsoluteBox>

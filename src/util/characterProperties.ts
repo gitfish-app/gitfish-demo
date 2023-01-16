@@ -1,10 +1,10 @@
-import PartyGlasses from '../assets/skins/PartyGlasses';
+import Porcupinefish from '../assets/fishes/Porcupinefish';
 
 const characterProperties = {
   0: {
     id: 0,
-    name: 'パーティメガネ',
-    element: PartyGlasses,
+    name: 'ハリセンボン',
+    element: Porcupinefish,
   },
 };
 
