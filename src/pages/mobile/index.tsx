@@ -12,7 +12,7 @@ import achievementRateSelector from '../../state/achievementRateSelector';
 import AchievementModal from '../../components/mobile/AchievementModal';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 import { useState } from 'react';
-import OriginalBottomSheet from '../../components/mobile/BottomSheet';
+import OriginalBottomSheet from '../../components/mobile/OriginalBottomSheet';
 import DrinkButton from '../../components/mobile/DrinkButton';
 
 const Index: NextPage = () => {

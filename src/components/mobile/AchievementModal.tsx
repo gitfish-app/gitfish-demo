@@ -141,7 +141,6 @@ const AchievementModal: FC<Props> = ({
               modalPageCount === 1 && (
                 <Box
                   animation={`${newCharacterAnimation} 1.5s ease-in-out infinite alternate`}
-                  animationDelay={'0.5s'}
                   transformOrigin={'center'}
                   as={fishProperties[presentNotification.fishId].element}
                   size={'l'}
