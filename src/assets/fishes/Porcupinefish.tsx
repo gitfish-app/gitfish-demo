@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { ComponentProps, FC } from 'react';
-import darken from '../../util/fishColorDarkenStyle';
+import darken from '../../util/characterColorDarkenStyle';
 
 type Props = { mainColor?: string; size?: 's' | 'm' | 'l' } & Omit<
   ComponentProps<typeof Box>,

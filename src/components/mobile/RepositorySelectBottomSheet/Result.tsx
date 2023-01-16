@@ -1,7 +1,7 @@
 import { Text, VStack, Box, HStack, SimpleGrid } from '@chakra-ui/react';
 import { ComponentProps, FC } from 'react';
 import Button from './Button';
-import fishProperties from '../../../util/fishProperties';
+import characterProperties from '../../../util/characterProperties';
 import { newCharacterAnimation } from '../../../styles/animations';
 import githubColors from '../../../constant/githubColors';
 import LanguageRateBar from './LanguageRateBar';
@@ -37,7 +37,7 @@ const Result: FC<Props> = ({
       <Box
         animation={`${newCharacterAnimation} 1.5s ease-in-out infinite alternate`}
         transformOrigin={'center'}
-        as={fishProperties[characterId].element}
+        as={characterProperties[characterId].element}
         size={'l'}
         mainColor={githubColors[selectRepository.mainLanguage].color}
       />

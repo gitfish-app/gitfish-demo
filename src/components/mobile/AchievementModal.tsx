@@ -19,7 +19,7 @@ import {
   AchievementActionType,
   ACHIEVEMENT_ACTION_NAME,
 } from '../../constant/achievementActionTypeEnum';
-import fishProperties from '../../util/fishProperties';
+import characterProperties from '../../util/characterProperties';
 import {
   itemAnimation,
   textAnimation,
@@ -142,13 +142,15 @@ const AchievementModal: FC<Props> = ({
                 <Box
                   animation={`${newCharacterAnimation} 1.5s ease-in-out infinite alternate`}
                   transformOrigin={'center'}
-                  as={fishProperties[presentNotification.characterId].element}
+                  as={
+                    characterProperties[presentNotification.characterId].element
+                  }
                   size={'l'}
                 />
               )
             ) : (
               <Box
-                as={fishProperties[presentNotification.skinId].element}
+                as={characterProperties[presentNotification.skinId].element}
                 size={'l'}
               />
             )}
