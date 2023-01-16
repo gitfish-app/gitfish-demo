@@ -14,11 +14,16 @@ const theme = extendTheme({
       body: {
         fontFamily: ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
       },
-      ...reactSpringBottomSheet,
-      ...chakraUiRadio,
       '[data-focus-visible]': {
         boxShadow: 'none !important',
       },
+      button: {
+        '&:disabled': {
+          filter: 'brightness(0.7)',
+        },
+      },
+      ...reactSpringBottomSheet,
+      ...chakraUiRadio,
     },
   },
   semanticTokens: {
@@ -31,10 +36,10 @@ const theme = extendTheme({
     Button: {
       baseStyle: {
         _hover: {
-          opacity: '0.9',
+          filter: 'brightness(0.9)',
         },
         _active: {
-          opacity: '0.9',
+          filter: 'brightness(0.9)',
         },
       },
     },

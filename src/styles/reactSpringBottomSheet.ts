@@ -11,9 +11,6 @@ const reactSpringBottomSheet = {
   '[data-rsbs-scroll]': {
     height: '100%',
   },
-  '[data-rsbs-overlay]': {
-    height: 'calc(100% - 80px)',
-  },
   '[data-rsbs-root]': {
     position: 'fixed',
     zIndex: 1000,
