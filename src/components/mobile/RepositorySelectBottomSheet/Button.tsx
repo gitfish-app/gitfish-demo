@@ -29,9 +29,6 @@ const Button: FC<Props> = ({
       gap={'8px'}
       onClick={onClick}
       disabled={disabled}
-      _disabled={{
-        opacity: '0.4',
-      }}
     >
       <Box
         as={'span'}

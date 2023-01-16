@@ -6,11 +6,11 @@ const presentNotificationsAtom = atom({
   default: [
     {
       category: PRESENT_NOTIFICATIONS_ENUM.NEW_CHARACTER,
-      fishId: 0, // fishIdはデモでは使用しない
+      characterId: '0', // characterIdはデモでは使用しない
     },
     {
       category: PRESENT_NOTIFICATIONS_ENUM.NEW_SKIN,
-      skinId: 0, // skinIdはデモでは使用しない
+      skinId: '0', // skinIdはデモでは使用しない
     },
   ],
 });

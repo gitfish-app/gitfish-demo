@@ -3,79 +3,61 @@ import { Box } from '@chakra-ui/react';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { BottomSheet as ReactSpringBottomSheet } from 'react-spring-bottom-sheet';
 import Repositories from './Repositories';
-
-export type Repository = {
-  id: number;
-  name: string;
-  mainLanguage: string;
-  lastUpdate: string;
-};
-
-const repositories: Repository[] = [
-  {
-    id: 0,
-    name: '2022_wd2a',
-    mainLanguage: 'HTML',
-    lastUpdate: 'Oct 29',
-  },
-  {
-    id: 1,
-    name: 'gitfish-mobile',
-    mainLanguage: 'CSS',
-    lastUpdate: 'Oct 27',
-  },
-  {
-    id: 2,
-    name: 'gitfish-web',
-    mainLanguage: 'JavaScript',
-    lastUpdate: 'Oct 27',
-  },
-  {
-    id: 3,
-    name: '2023_wd3a',
-    mainLanguage: 'TypeScript',
-    lastUpdate: 'Oct 27',
-  },
-  {
-    id: 4,
-    name: 'liff-starter',
-    mainLanguage: 'Dart',
-    lastUpdate: 'Oct 27',
-  },
-  {
-    id: 5,
-    name: 'bat-fish',
-    mainLanguage: 'Rust',
-    lastUpdate: 'Oct 27',
-  },
-];
+import Result from './Result';
+import repositories from '../../../mockdata/repositories';
 
 type Props = {
   isOpenBottomSheet: boolean;
+  closeBottomSheet: () => void;
 };
 
-const RepositorySelectBottomSheet: FC<Props> = ({ isOpenBottomSheet }) => {
+const RepositorySelectBottomSheet: FC<Props> = ({
+  isOpenBottomSheet,
+  closeBottomSheet,
+}) => {
   const [bottomSheetPageCount, setBottomSheetPageCount] = useState(0);
+  const [sheetTopMarginValue, setSheetTopMarginValue] = useState(80);
+  const [selectRepositoryId, setSelectRepositoryId] = useState<string>();
+
   const incrementPageCount = () => {
+    setSheetTopMarginValue(180);
     setBottomSheetPageCount((prev) => prev + 1);
   };
   const resetPageCount = () => {
     setBottomSheetPageCount(0);
   };
 
-  const [selectRepositoryIndex, setSelectRepositoryIndex] = useState();
-
   return (
-    <Box as={ReactSpringBottomSheet} open={isOpenBottomSheet}>
+    <Box
+      as={ReactSpringBottomSheet}
+      open={isOpenBottomSheet}
+      color={'white'}
+      onDismiss={closeBottomSheet}
+      sx={{
+        '[data-rsbs-overlay]': {
+          height: `calc(100% - ${sheetTopMarginValue}px)`,
+          transition: 'height 0.4s',
+        },
+      }}
+    >
       {bottomSheetPageCount === 0 && (
         <Repositories
           incrementPageCount={incrementPageCount}
           repositories={repositories}
-          selectRepositoryIndex={selectRepositoryIndex}
-          setSelectRepositoryIndex={setSelectRepositoryIndex}
+          selectRepositoryId={selectRepositoryId}
+          setSelectRepositoryId={setSelectRepositoryId}
         />
       )}
-      {bottomSheetPageCount === 1 && <Box>hoge</Box>}
+      {bottomSheetPageCount === 1 && (
+        <Result
+          selectRepository={repositories.find(
+            (repository) => repository.id === selectRepositoryId,
+          )}
+          characterId={'0'}
+          resetPageCount={resetPageCount}
+          closeBottomSheet={closeBottomSheet}
+        />
+      )}
     </Box>
   );
 };
