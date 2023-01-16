@@ -14,9 +14,10 @@ const theme = extendTheme({
       body: {
         fontFamily: ['Montserrat', 'Noto Sans JP', 'sans-serif'].join(','),
       },
-      '[data-focus-visible]': {
+      '*:focus-visible, [data-focus-visible]': {
         boxShadow: 'none !important',
       },
+
       button: {
         '&:disabled': {
           filter: 'brightness(0.7)',

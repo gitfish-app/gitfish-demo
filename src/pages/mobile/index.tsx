@@ -72,7 +72,7 @@ const Index: NextPage = () => {
         bgImage={'/assets/system-button_hamburger.png'}
         zIndex={'10'}
         onClick={hamburgerModalHandler.onOpen}
-        borderRadius={'15px'}
+        borderRadius={'11px'}
       />
       <HamburgerModal
         {...{
