@@ -12,8 +12,8 @@ import achievementRateSelector from '../../state/achievementRateSelector';
 import AchievementModal from '../../components/mobile/AchievementModal';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 import { useState } from 'react';
-import OriginalBottomSheet from '../../components/mobile/OriginalBottomSheet';
 import DrinkButton from '../../components/mobile/DrinkButton';
+import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
@@ -90,7 +90,7 @@ const Index: NextPage = () => {
         />
       )}
 
-      <OriginalBottomSheet isOpenBottomSheet={isOpenBottomSheet} />
+      <RepositorySelectBottomSheet isOpenBottomSheet={isOpenBottomSheet} />
     </MobileWrap>
   );
 };

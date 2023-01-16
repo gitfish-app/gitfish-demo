@@ -16,6 +16,9 @@ const theme = extendTheme({
       },
       ...reactSpringBottomSheet,
       ...chakraUiRadio,
+      '[data-focus-visible]': {
+        boxShadow: 'none !important',
+      },
     },
   },
   semanticTokens: {
