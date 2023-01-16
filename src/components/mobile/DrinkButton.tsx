@@ -15,6 +15,7 @@ const DrinkButton: FC<Props> = ({ onOpen }) => {
   return (
     <AbsoluteButton
       {...longPressBind()}
+      borderRadius={'15px'}
       bottom={'40px'}
       isHorizontalCenter
       zIndex={10}
