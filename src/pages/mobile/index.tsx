@@ -91,6 +91,7 @@ const Index: NextPage = () => {
       />
       {hasPresentNotification && (
         <AchievementModal
+          openHamburgerModal={hamburgerModalHandler.onOpen}
           achievementType={'present'}
           openBottomSheet={() => setIsOpenBottomSheet(true)}
           {...{

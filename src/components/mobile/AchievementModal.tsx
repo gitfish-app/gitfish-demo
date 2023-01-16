@@ -28,6 +28,7 @@ import {
 import characterProperties from '../../util/characterProperties';
 
 type Props = {
+  openHamburgerModal: () => void;
   achievementType: 'present' | 'levelUp' | 'completeDailyGoal';
   openBottomSheet: () => void;
 } & Omit<ComponentProps<typeof Modal>, 'children'>;
@@ -39,6 +40,7 @@ const buttonStyle = {
 };
 
 const AchievementModal: FC<Props> = ({
+  openHamburgerModal,
   achievementType,
   openBottomSheet,
   isOpen,
@@ -63,6 +65,7 @@ const AchievementModal: FC<Props> = ({
   const actionTypeToFunction: { [key in AchievementActionType]: () => void } = {
     collection: () => {
       onClose();
+      openHamburgerModal();
       setPresentNotifications((prev) => prev.slice(1));
     },
     gacha: () => {
