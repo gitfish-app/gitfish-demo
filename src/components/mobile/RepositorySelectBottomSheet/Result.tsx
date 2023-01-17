@@ -1,11 +1,11 @@
 import { Text, VStack, Box, HStack, SimpleGrid } from '@chakra-ui/react';
 import { ComponentProps, FC } from 'react';
 import Button from './Button';
-import characterProperties from '../../../util/skinProperties';
 import { newCharacterAnimation } from '../../../styles/animations';
 import githubColors from '../../../constant/githubColors';
 import LanguageRateBar from './LanguageRateBar';
 import { Repository } from '../../../mockdata/repositories';
+import characterProperties from '../../../util/characterProperties';
 
 type Props = {
   resetPageCount: () => void;
