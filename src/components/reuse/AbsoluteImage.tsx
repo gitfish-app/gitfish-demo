@@ -8,6 +8,8 @@ type Props = {
 
 const AbsoluteImage: FC<Props> = ({
   isHorizontalCenter = false,
+  left,
+  transform,
   children,
   ...attriblute
 }) => {
@@ -16,8 +18,8 @@ const AbsoluteImage: FC<Props> = ({
       pointerEvents={'none'}
       pos={'absolute'}
       {...attriblute}
-      left={isHorizontalCenter ? '50%' : undefined}
-      transform={isHorizontalCenter ? 'translateX(-50%)' : undefined}
+      left={isHorizontalCenter ? '50%' : left}
+      transform={isHorizontalCenter ? 'translateX(-50%)' : transform}
     />
   );
 };
