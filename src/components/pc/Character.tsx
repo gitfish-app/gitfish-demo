@@ -7,6 +7,7 @@ type Props = {
   characterMoveDistance: { x: number; y: number };
   aquariumSize: { width: number; height: number };
   characterImageFileName: string;
+  moveDelay?: number;
 };
 const Character: FC<Props> = ({
   characterSize = {
@@ -16,13 +17,16 @@ const Character: FC<Props> = ({
   characterMoveDistance,
   aquariumSize,
   characterImageFileName,
+  moveDelay = 0,
 }) => {
   const characterRef = useRef<HTMLImageElement>(null);
 
-  const [position, setPosition] = useState({
-    x: (aquariumSize.width - characterSize.width) / 2,
-    y: (aquariumSize.height - characterSize.height) / 2,
-  });
+  const initialPosition = {
+    x: (aquariumSize.width - characterSize.width) * Math.random(),
+    y: (aquariumSize.height - characterSize.height) * Math.random(),
+  };
+
+  const [position, setPosition] = useState(initialPosition);
   const [isRightDirection, setIsRightDirection] = useState(false);
 
   useEffect(() => {
@@ -36,17 +40,19 @@ const Character: FC<Props> = ({
           ? randRange(10, characterMoveDistance.y)
           : randRange(10, characterMoveDistance.y) * -1;
 
-      if (position.x + newX < 0) {
-        newX = newX * -1;
-      }
-      if (position.y + newY < 0) {
-        newY = newY * -1;
-      }
+      const outOfScreenTop = position.y + newY < 0;
+      const outOfScreenBottom =
+        position.y + newY + characterSize.height > aquariumSize.height;
+      const outOfScreenLeft = position.x + newX < 0;
+      const outOfScreenRight =
+        position.x + newX + characterSize.width > aquariumSize.width;
 
-      if (position.x + newX + characterSize.width > aquariumSize.width) {
-        newX = newX * -1;
-      }
-      if (position.y + newY + characterSize.height > aquariumSize.height) {
+      if (
+        outOfScreenTop ||
+        outOfScreenBottom ||
+        outOfScreenLeft ||
+        outOfScreenRight
+      ) {
         newY = newY * -1;
       }
 
@@ -56,13 +62,11 @@ const Character: FC<Props> = ({
         setIsRightDirection(false);
       }
 
-      console.log([newX, newY]);
-
       setPosition({
         x: position.x + newX,
         y: position.y + newY,
       });
-    }, 2000);
+    }, 2000 + moveDelay);
 
     return () => clearInterval(intervalId);
   }, [position]);
