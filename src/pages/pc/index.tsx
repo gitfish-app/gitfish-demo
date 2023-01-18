@@ -41,6 +41,9 @@ const Index: NextPage = () => {
   const openCharacterDetailModal = () => {
     characterDetailModalHandler.onOpen();
   };
+  const closeCharacterDetailModal = () => {
+    characterDetailModalHandler.onClose();
+  };
 
   return (
     <PcWrap maxW={DEMO_MAX_WIDTH} maxH={DEMO_MAX_HEIGHT}>
@@ -198,6 +201,7 @@ const Index: NextPage = () => {
 
             <Box
               as={'button'}
+              onClick={closeCharacterDetailModal}
               bgImage={'/assets/system-button_close.png'}
               bgRepeat={'no-repeat'}
               bgSize={'contain'}

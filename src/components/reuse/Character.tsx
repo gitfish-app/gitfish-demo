@@ -4,6 +4,8 @@ import randRange from '../../util/randRange';
 import AbsoluteBox from './AbsoluteBox';
 import AbsoluteButton from './AbsoluteButton';
 import AbsoluteImage from './AbsoluteImage';
+import githubColors from '../../constant/githubColors';
+import LanguageRateBar from './LanguageRateBar';
 
 type Props = {
   characterSize?: { width: number; height: number };
@@ -119,8 +121,18 @@ const Character: FC<Props> = ({
             <Text whiteSpace={'nowrap'} color={'#707F95'} fontWeight={'medium'}>
               30 commits
             </Text>
-            {/* プログレスバー */}
-            <HStack minW={'145px'} h={'26px'} bgColor={'tomato'}></HStack>
+            <HStack w={'145px'} h={'26px'}>
+              <Box
+                as={'i'}
+                className={`devicon-javascript-plain colored`}
+                fontSize={'28px'}
+              />
+              <LanguageRateBar
+                size={'md'}
+                languageColor={githubColors.JavaScript.color}
+                rate={80}
+              />
+            </HStack>
           </VStack>
           <AbsoluteImage
             src={'/assets/system-speech_bubble_triangle.svg'}
