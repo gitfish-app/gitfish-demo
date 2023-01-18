@@ -1,10 +1,12 @@
 import { useState, useEffect, FC, useRef } from 'react';
+import randRange from '../../util/randRange';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 
 type Props = {
   characterSize?: { width: number; height: number };
   characterMoveDistance: { x: number; y: number };
   aquariumSize: { width: number; height: number };
+  characterImageFileName: string;
 };
 const Character: FC<Props> = ({
   characterSize = {
@@ -13,6 +15,7 @@ const Character: FC<Props> = ({
   },
   characterMoveDistance,
   aquariumSize,
+  characterImageFileName,
 }) => {
   const characterRef = useRef<HTMLImageElement>(null);
 
@@ -25,22 +28,26 @@ const Character: FC<Props> = ({
   useEffect(() => {
     const intervalId = setInterval(() => {
       let newX =
-        Math.random() * characterMoveDistance.x - characterMoveDistance.x / 2;
+        Math.random() * 10 < 5
+          ? randRange(10, characterMoveDistance.x)
+          : randRange(10, characterMoveDistance.x) * -1;
       let newY =
-        Math.random() * characterMoveDistance.y - characterMoveDistance.y / 2;
+        Math.random() * 10 < 5
+          ? randRange(10, characterMoveDistance.y)
+          : randRange(10, characterMoveDistance.y) * -1;
 
       if (position.x + newX < 0) {
-        newX = Math.abs(newX);
+        newX = newX * -1;
       }
       if (position.y + newY < 0) {
-        newY = Math.abs(newY);
+        newY = newY * -1;
       }
 
       if (position.x + newX + characterSize.width > aquariumSize.width) {
-        newX = -Math.abs(newX);
+        newX = newX * -1;
       }
       if (position.y + newY + characterSize.height > aquariumSize.height) {
-        newY = -Math.abs(newY);
+        newY = newY * -1;
       }
 
       if (newX > 0) {
@@ -48,6 +55,8 @@ const Character: FC<Props> = ({
       } else {
         setIsRightDirection(false);
       }
+
+      console.log([newX, newY]);
 
       setPosition({
         x: position.x + newX,
@@ -63,7 +72,7 @@ const Character: FC<Props> = ({
       as={'img'}
       ref={characterRef}
       display={'block'}
-      src={'/assets/demo-mobile_moving_fish_n2.png'}
+      src={`/assets/${characterImageFileName}`}
       transition={'left 2000ms linear, top 2000ms linear'}
       left={position.x}
       top={position.y}
