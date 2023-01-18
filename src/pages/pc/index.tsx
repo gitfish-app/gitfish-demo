@@ -61,13 +61,13 @@ const Index: NextPage = () => {
           pos={'fixed'}
           inset={'0'}
           maxW={'650px'}
-          h={'701px'}
+          h={'700px'}
           m={'auto'}
           borderRadius={'30px'}
           bgColor={'#0E2144'}
           color={'white'}
         >
-          <VStack pt={'50px'} width={'465px'} mx={'auto'} gap={'24px'}>
+          <VStack pt={'40px'} width={'465px'} mx={'auto'} gap={'16px'}>
             <Box
               as={'img'}
               src={'/assets/demo-pc_moving_fish_n8.png'}
@@ -77,13 +77,13 @@ const Index: NextPage = () => {
 
             <Flex w={'100%'}>
               <Flex w={'calc(100% - 50px)'}>
-                <Flex flexDirection={'column'} w={'50%'} gap={'8px'}>
+                <Flex flexDirection={'column'} w={'50%'}>
                   <Text {...styles.heading}>Repository Name</Text>
                   <Text {...styles.body} textTransform={'uppercase'}>
                     GitFish
                   </Text>
                 </Flex>
-                <Flex flexDirection={'column'} w={'50%'} gap={'8px'}>
+                <Flex flexDirection={'column'} w={'50%'}>
                   <Text {...styles.heading}>Commits</Text>
                   <Text {...styles.body}>30</Text>
                 </Flex>
@@ -146,11 +146,65 @@ const Index: NextPage = () => {
             </Box>
 
             <Box w={'100%'}>
-              <Text {...styles.heading} mb={'8px'}>
-                User Name
-              </Text>
+              <Text {...styles.heading}>User Name</Text>
               <Text {...styles.body}>Murakamiyasan</Text>
             </Box>
+
+            <Flex w={'100%'} gap={'8px'}>
+              <Box
+                as={'button'}
+                w={'100%'}
+                h={'55px'}
+                borderRadius={'18px'}
+                bgColor={'#006EFB'}
+                fontWeight={'bold'}
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                gap={'8px'}
+              >
+                <Box
+                  as={'span'}
+                  display={'inline-block'}
+                  w={'38px'}
+                  h={'30px'}
+                  bgImage={'/assets/system-button_visit_aquarium_icon.svg'}
+                />
+                Visit
+              </Box>
+              <Box
+                as={'a'}
+                href={'https://github.com/gitfish-app/gitfish-demo'}
+                w={'100%'}
+                h={'55px'}
+                borderRadius={'18px'}
+                bgColor={'#006EFB'}
+                fontWeight={'bold'}
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                gap={'8px'}
+              >
+                <Box
+                  as={'span'}
+                  display={'inline-block'}
+                  w={'30px'}
+                  h={'30px'}
+                  bgImage={'/assets/system-button_source_icon.svg'}
+                />
+                Code
+              </Box>
+            </Flex>
+
+            <Box
+              as={'button'}
+              bgImage={'/assets/system-button_close.png'}
+              bgRepeat={'no-repeat'}
+              bgSize={'contain'}
+              display={'block'}
+              w={'50px'}
+              h={'50px'}
+            />
           </VStack>
         </ModalContent>
       </Modal>

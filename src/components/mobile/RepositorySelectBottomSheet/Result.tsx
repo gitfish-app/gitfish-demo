@@ -78,7 +78,7 @@ const Result: FC<Props> = ({
           closeBottomSheet();
           resetPageCount();
         }}
-        iconUrl={'/assets/mobile-source_button_icon.svg'}
+        iconUrl={'/assets/system-button_source_icon.svg'}
         buttonMessage={'See the source code'}
       />
     </VStack>
