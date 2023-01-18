@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react';
-import { useState, useEffect, FC, useRef } from 'react';
+import { Box, HStack, Text, VStack } from '@chakra-ui/react';
+import { useState, useEffect, FC } from 'react';
 import randRange from '../../util/randRange';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 import AbsoluteImage from '../reuse/AbsoluteImage';
@@ -83,16 +83,31 @@ const Character: FC<Props> = ({
       />
       {canSpeak && (
         <AbsoluteBox
-          bottom={'100%'}
-          zIndex={'1'}
+          bottom={'calc(100% + 20px)'}
+          zIndex={'1000'}
           display={'block'}
-          px={'40px'}
-          py={'32px'}
+          px={'32px'}
+          py={'24px'}
           bgColor={'#0E2144'}
           border={'3px solid #D3EDFB'}
           isHorizontalCenter
           borderRadius={'30px'}
         >
+          <VStack alignItems={'flex-start'} gap={'8px'}>
+            <Text
+              whiteSpace={'nowrap'}
+              color={'#D3EDFB'}
+              fontSize={'25px'}
+              fontWeight={'bold'}
+            >
+              GITFISH
+            </Text>
+            <Text whiteSpace={'nowrap'} color={'#707F95'} fontWeight={'medium'}>
+              30 commits
+            </Text>
+            {/* プログレスバー */}
+            <HStack minW={'145px'} h={'26px'} bgColor={'tomato'}></HStack>
+          </VStack>
           <AbsoluteImage
             src={'/assets/system-speech_bubble_triangle.svg'}
             bottom={'-14px'}
