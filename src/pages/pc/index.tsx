@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Fish from '../../components/pc/Character';
 import FishDetailModal from '../../components/pc/FishDetailModal/FishDetailModal';
 import FishPopover from '../../components/pc/FishPopover/FishPopover';
+import repositories from '../../mockdata/repositories';
 
 const Aquarium: NextPage = () => {
   const [aquariumWidth, setAquariumWidth] = useState(800);
@@ -37,7 +38,7 @@ const Aquarium: NextPage = () => {
       <button onClick={() => setAquariumHeight((height) => height + 100)}>
         Change height
       </button>
-      <FishDetailModal />
+      <FishDetailModal Repository={repositories[2]} />
     </Box>
   );
 };
