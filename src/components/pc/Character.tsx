@@ -1,6 +1,8 @@
+import { Box } from '@chakra-ui/react';
 import { useState, useEffect, FC, useRef } from 'react';
 import randRange from '../../util/randRange';
 import AbsoluteBox from '../reuse/AbsoluteBox';
+import AbsoluteImage from '../reuse/AbsoluteImage';
 
 type Props = {
   characterSize?: { width: number; height: number };
@@ -8,6 +10,7 @@ type Props = {
   aquariumSize: { width: number; height: number };
   characterImageFileName: string;
   moveDelay?: number;
+  canSpeak?: boolean;
 };
 const Character: FC<Props> = ({
   characterSize = {
@@ -18,9 +21,8 @@ const Character: FC<Props> = ({
   aquariumSize,
   characterImageFileName,
   moveDelay = 0,
+  canSpeak = false,
 }) => {
-  const characterRef = useRef<HTMLImageElement>(null);
-
   const initialPosition = {
     x: (aquariumSize.width - characterSize.width) * Math.random(),
     y: (aquariumSize.height - characterSize.height) * Math.random(),
@@ -47,14 +49,8 @@ const Character: FC<Props> = ({
       const outOfScreenRight =
         position.x + newX + characterSize.width > aquariumSize.width;
 
-      if (
-        outOfScreenTop ||
-        outOfScreenBottom ||
-        outOfScreenLeft ||
-        outOfScreenRight
-      ) {
-        newY = newY * -1;
-      }
+      if (outOfScreenTop || outOfScreenBottom) newY *= -1;
+      if (outOfScreenLeft || outOfScreenRight) newY *= -1;
 
       if (newX > 0) {
         setIsRightDirection(true);
@@ -73,17 +69,38 @@ const Character: FC<Props> = ({
 
   return (
     <AbsoluteBox
-      as={'img'}
-      ref={characterRef}
-      display={'block'}
-      src={`/assets/${characterImageFileName}`}
       transition={'left 2000ms linear, top 2000ms linear'}
       left={position.x}
       top={position.y}
-      transform={isRightDirection ? 'scaleX(-1)' : 'scaleX(1)'}
-      width={`${characterSize.width}px`}
-      height={`${characterSize.height}px`}
-    />
+    >
+      <Box
+        as={'img'}
+        display={'block'}
+        src={`/assets/${characterImageFileName}`}
+        transform={isRightDirection ? 'scaleX(-1)' : 'scaleX(1)'}
+        width={`${characterSize.width}px`}
+        height={`${characterSize.height}px`}
+      />
+      {canSpeak && (
+        <AbsoluteBox
+          bottom={'100%'}
+          zIndex={'1'}
+          display={'block'}
+          px={'40px'}
+          py={'32px'}
+          bgColor={'#0E2144'}
+          border={'3px solid #D3EDFB'}
+          isHorizontalCenter
+          borderRadius={'30px'}
+        >
+          <AbsoluteImage
+            src={'/assets/system-speech_bubble_triangle.svg'}
+            bottom={'-14px'}
+            isHorizontalCenter
+          />
+        </AbsoluteBox>
+      )}
+    </AbsoluteBox>
   );
 };
 

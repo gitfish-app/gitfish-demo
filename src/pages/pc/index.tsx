@@ -54,6 +54,7 @@ const Aquarium: NextPage = () => {
                   width: aquariumWidth,
                   height: aquariumHeight - AQUARIUM_DECORATION_PADDING,
                 }}
+                canSpeak
               />
             );
           })}
