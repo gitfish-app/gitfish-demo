@@ -1,22 +1,25 @@
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC, useRef } from 'react';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 
 type Props = {
-  characterSize: { width: number; height: number };
+  characterSize?: { width: number; height: number };
   characterMoveDistance: { x: number; y: number };
   aquariumSize: { width: number; height: number };
-  defaultPosition?: { x: number; y: number };
 };
 const Character: FC<Props> = ({
-  characterSize,
+  characterSize = {
+    width: 122,
+    height: 80,
+  },
   characterMoveDistance,
   aquariumSize,
-  defaultPosition = {
-    x: aquariumSize.width / 2 - characterSize.width / 2,
-    y: aquariumSize.height / 2 - characterSize.height / 2,
-  },
 }) => {
-  const [position, setPosition] = useState(defaultPosition);
+  const characterRef = useRef<HTMLImageElement>(null);
+
+  const [position, setPosition] = useState({
+    x: (aquariumSize.width - characterSize.width) / 2,
+    y: (aquariumSize.height - characterSize.height) / 2,
+  });
   const [isRightDirection, setIsRightDirection] = useState(false);
 
   useEffect(() => {
@@ -51,19 +54,22 @@ const Character: FC<Props> = ({
         y: position.y + newY,
       });
     }, 2000);
+
     return () => clearInterval(intervalId);
   }, [position]);
 
   return (
     <AbsoluteBox
       as={'img'}
+      ref={characterRef}
+      display={'block'}
       src={'/assets/demo-mobile_moving_fish_n2.png'}
       transition={'left 2000ms linear, top 2000ms linear'}
       left={position.x}
       top={position.y}
       transform={isRightDirection ? 'scaleX(-1)' : 'scaleX(1)'}
-      width={characterSize.width}
-      height={characterSize.height}
+      width={`${characterSize.width}px`}
+      height={`${characterSize.height}px`}
     />
   );
 };
