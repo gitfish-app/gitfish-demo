@@ -6,7 +6,7 @@ import AbsoluteButton from '../reuse/AbsoluteButton';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 import achievementRateSelector from '../../state/achievementRateSelector';
 import { floatingAnimation } from '../../styles/animations';
-import Character from '../pc/Character';
+import Character from '../reuse/Character';
 import mobileAquariumCharacters from '../../mockdata/mobileAquariumCharacters';
 
 type Props = {

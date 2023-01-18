@@ -1,8 +1,9 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 import { useState, useEffect, FC } from 'react';
 import randRange from '../../util/randRange';
-import AbsoluteBox from '../reuse/AbsoluteBox';
-import AbsoluteImage from '../reuse/AbsoluteImage';
+import AbsoluteBox from './AbsoluteBox';
+import AbsoluteButton from './AbsoluteButton';
+import AbsoluteImage from './AbsoluteImage';
 
 type Props = {
   characterSize?: { width: number; height: number };
@@ -11,6 +12,7 @@ type Props = {
   characterImageFileName: string;
   moveDelay?: number;
   canSpeak?: boolean;
+  openCharacterDetailModal?: () => void;
 };
 const Character: FC<Props> = ({
   characterSize = {
@@ -22,6 +24,7 @@ const Character: FC<Props> = ({
   characterImageFileName,
   moveDelay = 0,
   canSpeak = false,
+  openCharacterDetailModal,
 }) => {
   const initialPosition = {
     x: (aquariumSize.width - characterSize.width) * Math.random(),
@@ -70,14 +73,14 @@ const Character: FC<Props> = ({
   }, [position]);
 
   return (
-    <AbsoluteBox
+    <AbsoluteButton
       transition={'left 2000ms linear, top 2000ms linear'}
       left={position.x}
       top={position.y}
       w={'fit-content'}
       h={'fit-content'}
+      onClick={canSpeak ? openCharacterDetailModal : undefined}
       _hover={{
-        cursor: 'pointer',
         zIndex: '1000',
         '& > div': {
           display: 'block',
@@ -91,6 +94,7 @@ const Character: FC<Props> = ({
         transform={isRightDirection ? 'scaleX(-1)' : 'scaleX(1)'}
         width={`${characterSize.width}px`}
         height={`${characterSize.height}px`}
+        pointerEvents={'none'}
       />
       {canSpeak && (
         <AbsoluteBox
@@ -125,7 +129,7 @@ const Character: FC<Props> = ({
           />
         </AbsoluteBox>
       )}
-    </AbsoluteBox>
+    </AbsoluteButton>
   );
 };
 
