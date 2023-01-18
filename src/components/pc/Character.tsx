@@ -37,6 +37,12 @@ const Character: FC<Props> = ({
         Math.random() * 10 < 5
           ? randRange(10, characterMoveDistance.x)
           : randRange(10, characterMoveDistance.x) * -1;
+
+      const outOfScreenLeft = position.x + newX < 0;
+      const outOfScreenRight =
+        position.x + newX + characterSize.width > aquariumSize.width;
+      if (outOfScreenLeft || outOfScreenRight) newX *= -1;
+
       let newY =
         Math.random() * 10 < 5
           ? randRange(10, characterMoveDistance.y)
@@ -45,12 +51,8 @@ const Character: FC<Props> = ({
       const outOfScreenTop = position.y + newY < 0;
       const outOfScreenBottom =
         position.y + newY + characterSize.height > aquariumSize.height;
-      const outOfScreenLeft = position.x + newX < 0;
-      const outOfScreenRight =
-        position.x + newX + characterSize.width > aquariumSize.width;
 
       if (outOfScreenTop || outOfScreenBottom) newY *= -1;
-      if (outOfScreenLeft || outOfScreenRight) newY *= -1;
 
       if (newX > 0) {
         setIsRightDirection(true);
@@ -72,6 +74,15 @@ const Character: FC<Props> = ({
       transition={'left 2000ms linear, top 2000ms linear'}
       left={position.x}
       top={position.y}
+      w={'fit-content'}
+      h={'fit-content'}
+      _hover={{
+        cursor: 'pointer',
+        zIndex: '1000',
+        '& > div': {
+          display: 'block',
+        },
+      }}
     >
       <Box
         as={'img'}
@@ -83,9 +94,8 @@ const Character: FC<Props> = ({
       />
       {canSpeak && (
         <AbsoluteBox
+          display={'none'}
           bottom={'calc(100% + 20px)'}
-          zIndex={'1000'}
-          display={'block'}
           px={'32px'}
           py={'24px'}
           bgColor={'#0E2144'}
