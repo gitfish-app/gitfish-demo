@@ -10,6 +10,7 @@ type Props = {
 const AbsoluteBox: FC<Props> = ({
   isHorizontalCenter = false,
   isVerticalCenter = false,
+  transform,
   top,
   left,
   children,
@@ -22,10 +23,12 @@ const AbsoluteBox: FC<Props> = ({
       {...attriblute}
       top={isVerticalCenter ? '50%' : top}
       left={isHorizontalCenter ? '50%' : left}
-      // transform={isHorizontalCenter ? 'translateX(-50%)' : undefined}
-      transform={`translate(${isHorizontalCenter ? '-50%' : '0'}, ${
-        isVerticalCenter ? '-50%' : '0'
-      })`}
+      transform={
+        transform ||
+        `translate(${isHorizontalCenter ? '-50%' : '0'}, ${
+          isVerticalCenter ? '-50%' : '0'
+        })`
+      }
     >
       {children}
     </Box>
