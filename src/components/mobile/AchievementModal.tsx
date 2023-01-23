@@ -132,6 +132,19 @@ const AchievementModal: FC<Props> = ({
             w={'102px'}
             h={'105px'}
           />
+          {'characterId' in presentNotification ? (
+            modalPageCount === 0 ? (
+              <AbsoluteImage
+                isHorizontalCenter
+                zIndex={30}
+                top={'32px'}
+                src="/assets/mobile-achievement-present-box.png"
+                objectFit={'cover'}
+                w={'74px'}
+                h={'83px'}
+              />
+            ) : null
+          ) : null}
           <AbsoluteBox
             isHorizontalCenter
             isVerticalCenter
