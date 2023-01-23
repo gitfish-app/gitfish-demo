@@ -3,7 +3,7 @@ import { ComponentProps, FC } from 'react';
 import Button from './Button';
 import { newCharacterAnimation } from '../../../styles/animations';
 import githubColors from '../../../constant/githubColors';
-import LanguageRateBar from './LanguageRateBar';
+import LanguageRateBar from '../../reuse/LanguageRateBar';
 import { Repository } from '../../../mockdata/repositories';
 import characterProperties from '../../../util/characterProperties';
 
@@ -78,7 +78,7 @@ const Result: FC<Props> = ({
           closeBottomSheet();
           resetPageCount();
         }}
-        iconUrl={'/assets/mobile-source_button_icon.svg'}
+        iconUrl={'/assets/system-button_source_icon.svg'}
         buttonMessage={'See the source code'}
       />
     </VStack>

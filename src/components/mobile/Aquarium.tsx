@@ -6,6 +6,8 @@ import AbsoluteButton from '../reuse/AbsoluteButton';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
 import achievementRateSelector from '../../state/achievementRateSelector';
 import { floatingAnimation } from '../../styles/animations';
+import Character from '../reuse/Character';
+import mobileAquariumCharacters from '../../mockdata/mobileAquariumCharacters';
 
 type Props = {
   openAchievementModal: () => void;
@@ -13,55 +15,75 @@ type Props = {
 
 const MIN_WATER_AMOUNT = 250;
 const PADDING_TOP = 80;
+const AQUARIUM_DECORATION_PADDING = 50;
 
 const Aquarium: FC<Props> = ({ openAchievementModal }) => {
   const [windowHeight, setWindowHeight] = useState(0);
+
   const achievementRate = useRecoilValue(achievementRateSelector);
   const hasPresentNotification = useRecoilValue(hasPresentNotificationSelector);
 
-  useEffect(() => {
-    setWindowHeight(window.innerHeight);
-  }, []);
-
-  const waterHeight =
+  const amountOfWaterLevelCalculation =
     MIN_WATER_AMOUNT +
     (windowHeight - MIN_WATER_AMOUNT - PADDING_TOP) *
       (achievementRate <= 100 ? achievementRate : 100) *
       0.01;
 
+  const [aquariumWidth, setAquariumWidth] = useState(375);
+  const [aquariumHeight, setAquariumHeight] = useState(
+    amountOfWaterLevelCalculation,
+  );
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+    setAquariumWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    setAquariumHeight(amountOfWaterLevelCalculation);
+  }, [achievementRate]);
+
   return (
-    <AbsoluteBox
-      w={'100%'}
-      h={'100%'}
-      _before={{
-        content: '""',
-        position: 'absolute',
-        zIndex: '1',
-        display: 'block',
-        width: '100%',
-        height: '35px',
-        bottom: waterHeight,
-        transition: 'bottom 0.5s',
-        backgroundImage: 'url(/assets/mobile-home_water_wave.png)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-      _after={{
-        content: '""',
-        position: 'absolute',
-        zIndex: '1',
-        display: 'block',
-        w: '100%',
-        h: waterHeight,
-        bottom: '0',
-        bgColor: '#050732',
-        transition: 'height 0.5s',
-      }}
-    >
+    <AbsoluteBox w={'100%'} h={'100%'}>
+      <AbsoluteBox
+        zIndex={'1'}
+        display={'block'}
+        width={'100%'}
+        height={'35px'}
+        bottom={aquariumHeight}
+        transition={'bottom 0.5s'}
+        backgroundImage={'url(/assets/mobile-home_water_wave.png)'}
+        backgroundRepeat={'no-repeat'}
+        backgroundSize={'cover'}
+        backgroundPosition={'center'}
+      />
+      <AbsoluteBox
+        position={'absolute'}
+        zIndex={'1'}
+        display={'block'}
+        w={'100%'}
+        h={aquariumHeight}
+        bottom={'0'}
+        bgColor={'#050732'}
+        transition={'height 0.5s'}
+      >
+        {mobileAquariumCharacters.map((character, index) => (
+          <Character
+            key={character.characterImageFileName}
+            characterMoveDistance={character.characterMoveDistance}
+            characterSize={character.characterSize}
+            characterImageFileName={character.characterImageFileName}
+            aquariumSize={{
+              width: aquariumWidth,
+              height: aquariumHeight - AQUARIUM_DECORATION_PADDING,
+            }}
+            moveDelay={index * 100}
+          />
+        ))}
+      </AbsoluteBox>
       {hasPresentNotification && (
         <AbsoluteButton
-          bottom={waterHeight}
+          bottom={aquariumHeight}
           left={'40px'}
           transformOrigin={'bottom'}
           transform={'translateY(-15px) rotate(0deg)'}

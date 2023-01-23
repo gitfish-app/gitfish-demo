@@ -1,46 +1,241 @@
-import { Box } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import { useState } from 'react';
-import Fish from '../../components/pc/Character';
-import FishDetailModal from '../../components/pc/FishDetailModal/FishDetailModal';
-import FishPopover from '../../components/pc/FishPopover/FishPopover';
-import repositories from '../../mockdata/repositories';
+import { useState, ComponentProps } from 'react';
+import AbsoluteImage from '../../components/reuse/AbsoluteImage';
+import AbsoluteButton from '../../components/reuse/AbsoluteButton';
+import {
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  VStack,
+  ModalContent,
+  Box,
+  Flex,
+  Text,
+  SimpleGrid,
+  HStack,
+} from '@chakra-ui/react';
+import Aquarium from '../../components/pc/Aquarium';
+import PcWrap from '../../components/pc/PcWrap';
+import githubColors from '../../constant/githubColors';
+import LanguageRateBar from '../../components/reuse/LanguageRateBar';
 
-const Aquarium: NextPage = () => {
-  const [aquariumWidth, setAquariumWidth] = useState(800);
-  const [aquariumHeight, setAquariumHeight] = useState(600);
+const DEMO_MAX_WIDTH = 1280;
+const DEMO_MAX_HEIGHT = 832;
+
+const styles: { [key: string]: ComponentProps<typeof Text> } = {
+  heading: {
+    fontSize: '18px',
+    fontWeight: 'medium',
+  },
+  body: {
+    fontSize: '25px',
+    fontWeight: 'bold',
+  },
+};
+
+const Index: NextPage = () => {
+  const [aquariumWidth] = useState(DEMO_MAX_WIDTH);
+  const [aquariumHeight] = useState(DEMO_MAX_HEIGHT - 85 - 35);
+
+  const characterDetailModalHandler = useDisclosure();
+  const openCharacterDetailModal = () => {
+    characterDetailModalHandler.onOpen();
+  };
+  const closeCharacterDetailModal = () => {
+    characterDetailModalHandler.onClose();
+  };
 
   return (
-    <Box bgColor={'#050732'}>
-      <Box
-        pos={'relative'}
-        w={aquariumWidth}
-        h={aquariumHeight}
-        border={'1px solid black'}
-      >
-        <Fish
-          characterSize={{ width: 100, height: 100 }}
-          characterMoveDistance={{ x: 100, y: 100 }}
-          aquariumSize={{ width: aquariumWidth, height: aquariumHeight }}
+    <PcWrap maxW={DEMO_MAX_WIDTH} maxH={DEMO_MAX_HEIGHT}>
+      <Aquarium
+        aquariumSize={{
+          width: aquariumWidth,
+          height: aquariumHeight,
+        }}
+        openCharacterDetailModal={openCharacterDetailModal}
+      />
+
+      <Modal {...characterDetailModalHandler}>
+        <ModalOverlay
+          background={'rgba(5, 7, 50, 0.7)'}
+          backdropFilter={'blur(6.5px)'}
         />
-        <Box pos={'absolute'}>
-          <FishPopover
-            fishName="test"
-            commitCount={30}
-            mainLanguage={'JavaScript'}
-            languagePercentage={50}
-          />
-        </Box>
-      </Box>
-      <button onClick={() => setAquariumWidth((width) => width + 100)}>
-        Change width
-      </button>
-      <button onClick={() => setAquariumHeight((height) => height + 100)}>
-        Change height
-      </button>
-      <FishDetailModal Repository={repositories[2]} />
-    </Box>
+        <ModalContent
+          pos={'fixed'}
+          inset={'0'}
+          maxW={'650px'}
+          h={'700px'}
+          m={'auto'}
+          borderRadius={'30px'}
+          bgColor={'#0E2144'}
+          color={'white'}
+        >
+          <VStack pt={'40px'} width={'465px'} mx={'auto'} gap={'16px'}>
+            <Box
+              as={'img'}
+              src={'/assets/demo-pc_moving_fish_n8.png'}
+              w={'300px'}
+              h={'167px'}
+            />
+
+            <Flex w={'100%'}>
+              <Flex w={'calc(100% - 50px)'}>
+                <Flex flexDirection={'column'} w={'50%'}>
+                  <Text {...styles.heading}>Repository Name</Text>
+                  <Text {...styles.body} textTransform={'uppercase'}>
+                    GitFish
+                  </Text>
+                </Flex>
+                <Flex flexDirection={'column'} w={'50%'}>
+                  <Text {...styles.heading}>Commits</Text>
+                  <Text {...styles.body}>30</Text>
+                </Flex>
+              </Flex>
+              <Box
+                as={'button'}
+                w={'50px'}
+                h={'50px'}
+                bgImage={'/assets/system-button_favorite_character.png'}
+                bgRepeat={'no-repeat'}
+                bgSize={'contain'}
+              />
+            </Flex>
+
+            <Box w={'100%'}>
+              <Text {...styles.heading} mb={'16px'}>
+                Language
+              </Text>
+              <SimpleGrid columns={3} spacing={'16px'}>
+                {[
+                  {
+                    name: 'Swift',
+                    rate: 85,
+                  },
+                  {
+                    name: 'Go',
+                    rate: 74,
+                  },
+                  {
+                    name: 'Ruby',
+                    rate: 61,
+                  },
+                  {
+                    name: 'PHP',
+                    rate: 60,
+                  },
+                  {
+                    name: 'Dart',
+                    rate: 30,
+                  },
+                  {
+                    name: 'Kotlin',
+                    rate: 20,
+                  },
+                ].map((language) => (
+                  <HStack key={language.name} w={'100%'}>
+                    <Box
+                      as={'i'}
+                      className={`devicon-${language.name.toLowerCase()}-plain colored`}
+                      fontSize={'28px'}
+                    />
+                    <LanguageRateBar
+                      size={'md'}
+                      languageColor={githubColors[language.name].color}
+                      rate={language.rate}
+                    />
+                  </HStack>
+                ))}
+              </SimpleGrid>
+            </Box>
+
+            <Box w={'100%'}>
+              <Text {...styles.heading}>User Name</Text>
+              <Text {...styles.body}>Murakamiyasan</Text>
+            </Box>
+
+            <Flex w={'100%'} gap={'8px'}>
+              <Box
+                as={'button'}
+                w={'100%'}
+                h={'55px'}
+                borderRadius={'18px'}
+                bgColor={'#006EFB'}
+                fontWeight={'bold'}
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                gap={'8px'}
+              >
+                <Box
+                  as={'span'}
+                  display={'inline-block'}
+                  w={'38px'}
+                  h={'30px'}
+                  bgImage={'/assets/system-button_visit_aquarium_icon.svg'}
+                />
+                Visit
+              </Box>
+              <Box
+                as={'a'}
+                href={'https://github.com/gitfish-app/gitfish-demo'}
+                w={'100%'}
+                h={'55px'}
+                borderRadius={'18px'}
+                bgColor={'#006EFB'}
+                fontWeight={'bold'}
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                gap={'8px'}
+              >
+                <Box
+                  as={'span'}
+                  display={'inline-block'}
+                  w={'30px'}
+                  h={'30px'}
+                  bgImage={'/assets/system-button_source_icon.svg'}
+                />
+                Code
+              </Box>
+            </Flex>
+
+            <Box
+              as={'button'}
+              onClick={closeCharacterDetailModal}
+              bgImage={'/assets/system-button_close.png'}
+              bgRepeat={'no-repeat'}
+              bgSize={'contain'}
+              display={'block'}
+              w={'50px'}
+              h={'50px'}
+            />
+          </VStack>
+        </ModalContent>
+      </Modal>
+
+      <AbsoluteButton
+        top={'40px'}
+        right={'40px'}
+        w={'70px'}
+        h={'70px'}
+        bgImage={'/assets/system-button_hamburger.png'}
+        zIndex={'10'}
+        onClick={() => {}}
+        borderRadius={'11px'}
+      />
+      <AbsoluteImage
+        src={'/assets/system-logo.svg'}
+        zIndex={5}
+        top={'30px'}
+        left={'40px'}
+      />
+      <AbsoluteImage
+        src={'/assets/pc-home_bottom_decoration.png'}
+        zIndex={5}
+        bottom={0}
+      />
+    </PcWrap>
   );
 };
 
-export default Aquarium;
+export default Index;

@@ -20,7 +20,9 @@ const AbsoluteButton: FC<Props> = ({
       bgSize={'contain'}
       {...attriblute}
       left={isHorizontalCenter ? '50%' : left}
-      transform={isHorizontalCenter ? 'translateX(-50%)' : transform}
+      transform={
+        transform || isHorizontalCenter ? 'translateX(-50%)' : transform
+      }
     >
       {children}
     </Box>
