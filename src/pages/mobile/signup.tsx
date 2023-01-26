@@ -38,36 +38,42 @@ const SignUp: FC = () => {
           />
         </AbsoluteButton>
       </Box>
-      <FormButton
-        text={'Continue with GitHub'}
-        fontSize={'16px'}
-        color={'#050732'}
-        bgColor={'#D3EDFB'}
-        w={'100%'}
-        height={'55px'}
-        fontWeight={'bold'}
-        display={'flex'}
-        justifyContent={'center'}
-        alignItems={'center'}
-        LeftElement={
-          <Box
-            as={'i'}
-            pos={'absolute'}
-            left={'18px'}
-            className={'devicon-github-plain colored'}
-            fontSize={'26px'}
-          />
-        }
-      />
-      <FormButton
-        text={'Sign Up'}
-        fontSize={'16px'}
-        color={'#D3EDFB'}
-        bgColor={'#006EFB'}
-        w={'100%'}
-        height={'55px'}
-        fontWeight={'bold'}
-      />
+      <Box
+        mt={'160px'}
+        borderTopLeftRadius={'18px'}
+        borderTopRightRadius={'18px'}
+      >
+        <FormButton
+          text={'Continue with GitHub'}
+          fontSize={'16px'}
+          color={'#050732'}
+          bgColor={'#D3EDFB'}
+          w={'100%'}
+          height={'55px'}
+          fontWeight={'bold'}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+          LeftElement={
+            <Box
+              as={'i'}
+              pos={'absolute'}
+              left={'18px'}
+              className={'devicon-github-plain colored'}
+              fontSize={'26px'}
+            />
+          }
+        />
+        <FormButton
+          text={'Sign Up'}
+          fontSize={'16px'}
+          color={'#D3EDFB'}
+          bgColor={'#006EFB'}
+          w={'100%'}
+          height={'55px'}
+          fontWeight={'bold'}
+        />
+      </Box>
     </MobileWrap>
   );
 };
