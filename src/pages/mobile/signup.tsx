@@ -40,14 +40,31 @@ const SignUp: FC = () => {
       </Box>
       <FormButton
         text={'Continue with GitHub'}
+        color={'#050732'}
         bgColor={'#D3EDFB'}
         w={'100%'}
         height={'55px'}
+        fontWeight={'bold'}
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
         LeftElement={
-          <Box pos={'absolute'} left={'18px'}>
-            abc
-          </Box>
+          <Box
+            as={'i'}
+            pos={'absolute'}
+            left={'18px'}
+            className={'devicon-github-plain colored'}
+            fontSize={'26px'}
+          />
         }
+      />
+      <FormButton
+        text={'Sign Up'}
+        color={'#D3EDFB'}
+        bgColor={'#006EFB'}
+        w={'100%'}
+        height={'55px'}
+        fontWeight={'bold'}
       />
     </MobileWrap>
   );
