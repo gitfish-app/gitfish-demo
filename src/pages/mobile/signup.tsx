@@ -1,6 +1,5 @@
 import { Box, Image } from '@chakra-ui/react';
 import { FC } from 'react';
-import SignUpBottomSheet from '../../components/mobile/AccountFormBottomSheet/SignUpBottomSheet';
 import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 import AbsoluteImage from '../../components/reuse/AbsoluteImage';
@@ -38,15 +37,6 @@ const SignUp: FC = () => {
           />
         </AbsoluteButton>
       </Box>
-      <Box w={'100%'} pos={'relative'} zIndex={'1'}>
-        <AbsoluteImage
-          w={'100%'}
-          src={'/assets/mobile-home_bottom_decoration.png'}
-          alt={'deco'}
-          top={'-32px'}
-        />
-      </Box>
-      <SignUpBottomSheet />
     </MobileWrap>
   );
 };
