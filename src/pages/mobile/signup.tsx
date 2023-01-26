@@ -40,6 +40,7 @@ const SignUp: FC = () => {
       </Box>
       <FormButton
         text={'Continue with GitHub'}
+        fontSize={'16px'}
         color={'#050732'}
         bgColor={'#D3EDFB'}
         w={'100%'}
@@ -60,6 +61,7 @@ const SignUp: FC = () => {
       />
       <FormButton
         text={'Sign Up'}
+        fontSize={'16px'}
         color={'#D3EDFB'}
         bgColor={'#006EFB'}
         w={'100%'}
