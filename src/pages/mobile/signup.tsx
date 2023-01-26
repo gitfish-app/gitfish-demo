@@ -1,5 +1,6 @@
 import { Box, Image } from '@chakra-ui/react';
 import { FC } from 'react';
+import FormButton from '../../components/mobile/Auth/FormButton';
 import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 import AbsoluteImage from '../../components/reuse/AbsoluteImage';
@@ -37,6 +38,17 @@ const SignUp: FC = () => {
           />
         </AbsoluteButton>
       </Box>
+      <FormButton
+        text={'Continue with GitHub'}
+        bgColor={'#D3EDFB'}
+        w={'100%'}
+        height={'55px'}
+        LeftElement={
+          <Box pos={'absolute'} left={'18px'}>
+            abc
+          </Box>
+        }
+      />
     </MobileWrap>
   );
 };
