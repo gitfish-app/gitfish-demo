@@ -4,7 +4,7 @@ import { atom } from 'recoil';
 
 type UserRegistration = {
   gender: 'woman' | 'man';
-  weight: number;
+  weight: string;
   height: number;
   age: number;
   dailyGoal: number;
