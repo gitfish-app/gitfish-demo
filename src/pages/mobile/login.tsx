@@ -86,8 +86,13 @@ const LogIn: FC = () => {
           onClick={() => signInWithGithub()}
         />
         {error ? (
-          <Text textAlign="center" fontSize={'14px'} color={'red'}>
-            {error.message}
+          <Text
+            textAlign="center"
+            fontSize={'14px'}
+            color={'red.500'}
+            mt={'30px'}
+          >
+            {error.message ? error.message : 'error'}
           </Text>
         ) : null}
       </Box>
