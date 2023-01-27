@@ -2,12 +2,14 @@ import { Flex } from '@chakra-ui/react';
 import { FC } from 'react';
 import AbsoluteBox from '../../../reuse/AbsoluteBox';
 import DefaultButton from '../../../reuse/DefaultButton';
+import ProgressHeader from '../ProgressHeader';
 import Title from '../Title';
-import GendarButton from './GendarButton';
+import GendarButton from './GenderButton';
 
 const Index: FC = () => {
   return (
     <>
+      <ProgressHeader progress={0} />
       <Title title={'What’s Your Gender?'} />
       <AbsoluteBox
         as={Flex}
@@ -16,8 +18,8 @@ const Index: FC = () => {
         gap={'24px'}
         top={'240px'}
       >
-        <GendarButton gendar={'woman'} />
-        <GendarButton gendar={'man'} />
+        <GendarButton gender={'woman'} />
+        <GendarButton gender={'man'} />
       </AbsoluteBox>
       <AbsoluteBox
         w={'100%'}

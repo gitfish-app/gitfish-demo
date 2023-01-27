@@ -2,10 +2,10 @@ import { Image, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 
 type Props = {
-  gendar: 'woman' | 'man';
+  gender: 'woman' | 'man';
 };
 
-const GendarButton: FC<Props> = ({ gendar }) => {
+const GenderButton: FC<Props> = ({ gender }) => {
   return (
     <VStack
       as={'button'}
@@ -15,7 +15,7 @@ const GendarButton: FC<Props> = ({ gendar }) => {
       borderRadius={'16px'}
     >
       <Image
-        src={`/assets/mobile-user_registration_${gendar}.png`}
+        src={`/assets/mobile-user_registration_${gender}.png`}
         w={'66px'}
       />
       <Text
@@ -25,10 +25,10 @@ const GendarButton: FC<Props> = ({ gendar }) => {
         color={'#FFFFFF'}
         textTransform={'capitalize'}
       >
-        {gendar}
+        {gender}
       </Text>
     </VStack>
   );
 };
 
-export default GendarButton;
+export default GenderButton;
