@@ -1,15 +1,17 @@
 import { Box, HStack, Image, Text } from '@chakra-ui/react';
+import { NextRouter } from 'next/router';
 import { FC } from 'react';
 import { range } from '../../../util/range';
 import AbsoluteButton from '../../reuse/AbsoluteButton';
 
 type Props = {
   progress: 0 | 1 | 2 | 3;
+  router: NextRouter;
 };
 
 const progressRangeArr = range(4);
 
-const ProgressHeader: FC<Props> = ({ progress }) => {
+const ProgressHeader: FC<Props> = ({ progress, router }) => {
   return (
     <Box position={'relative'} zIndex={'10'}>
       <AbsoluteButton
@@ -23,6 +25,7 @@ const ProgressHeader: FC<Props> = ({ progress }) => {
         display={'flex'}
         justifyContent={'center'}
         alignItems={'center'}
+        onClick={() => router.back()}
       >
         <Image
           src={'/assets/system-tag_arrow.png'}

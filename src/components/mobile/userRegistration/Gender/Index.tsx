@@ -1,15 +1,18 @@
 import { Flex } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import AbsoluteBox from '../../../reuse/AbsoluteBox';
 import DefaultButton from '../../../reuse/DefaultButton';
 import ProgressHeader from '../ProgressHeader';
 import Title from '../Title';
-import GendarButton from './GenderButton';
+import GenderButton from './GenderButton';
 
 const Index: FC = () => {
+  const router = useRouter();
+
   return (
     <>
-      <ProgressHeader progress={0} />
+      <ProgressHeader progress={0} router={router} />
       <Title title={'What’s Your Gender?'} />
       <AbsoluteBox
         as={Flex}
@@ -18,8 +21,8 @@ const Index: FC = () => {
         gap={'24px'}
         top={'240px'}
       >
-        <GendarButton gender={'woman'} />
-        <GendarButton gender={'man'} />
+        <GenderButton gender={'woman'} />
+        <GenderButton gender={'man'} />
       </AbsoluteBox>
       <AbsoluteBox
         w={'100%'}
@@ -30,7 +33,10 @@ const Index: FC = () => {
         bottom={'150px'}
         zIndex={'20'}
       >
-        <DefaultButton text={'Next'} />
+        <DefaultButton
+          text={'Next'}
+          onClick={() => router.push('/mobile/user-registration/weight')}
+        />
       </AbsoluteBox>
     </>
   );
