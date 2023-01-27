@@ -14,7 +14,7 @@ const LogIn: FC = () => {
         pos={'relative'}
         zIndex={'10'}
       >
-        <Box w={'104px'}>
+        <Box w={'138px'}>
           <Image src={'/assets/gitfish-logo.png'} alt={'logo'} w={'100%'} />
         </Box>
         <AbsoluteButton
