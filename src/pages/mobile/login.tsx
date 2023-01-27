@@ -7,14 +7,22 @@ import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 import { useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
 import useGithubRepo from '../../hooks/data/useGithubRepo';
+import { useRouter } from 'next/router';
 
 const LogIn: FC = () => {
+  const router = useRouter();
   const [signInWithGithub, user, loading, error] = useSignInWithGithub(auth);
 
   const { repos } = useGithubRepo(user);
 
   console.log(user);
   console.log(repos);
+
+  useEffect(() => {
+    if (user) {
+      router.replace('/mobile/user-registration/gender');
+    }
+  }, [user]);
 
   return (
     <MobileWrap>
