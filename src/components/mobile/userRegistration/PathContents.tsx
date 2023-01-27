@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { PageName } from '../../../pages/mobile/user-registration/[pageName]';
 
-import Gendar from './Gendar/Index';
+import Gender from './Gender/Index';
 import Weight from './Weight/Index';
 import Height from './Height/Index';
 import Age from './Age/Index';
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const pathToComponent = {
-  gendar: <Gendar />,
+  gender: <Gender />,
   weight: <Weight />,
   height: <Height />,
   age: <Age />,
