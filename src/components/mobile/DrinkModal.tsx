@@ -1,6 +1,5 @@
 import { ComponentProps, FC, useState } from 'react';
 import {
-  Button,
   Flex,
   Modal,
   ModalContent,
@@ -14,6 +13,7 @@ import AbsoluteButton from '../reuse/AbsoluteButton';
 import { SetterOrUpdater } from 'recoil';
 import AbsoluteBox from '../reuse/AbsoluteBox';
 import AbsoluteImage from '../reuse/AbsoluteImage';
+import DefaultButton from '../reuse/DefaultButton';
 
 type Props = {
   setAmountCurrentWater: SetterOrUpdater<number>;
@@ -114,20 +114,11 @@ const DrinkModal: FC<Props> = ({ setAmountCurrentWater, isOpen, onClose }) => {
               />
             </Slider>
           </Flex>
-          <Button
-            w={'100%'}
-            h={'55px'}
-            borderRadius={'18px'}
-            fontWeight={'bold'}
-            bgColor={'#006EFB'}
-            _active={{ bgColor: '#006EFB' }}
-            _hover={{ bgColor: '#006EFB' }}
-            color={'white'}
+          <DefaultButton
+            text={'Drink'}
             onClick={drinkWater}
             disabled={amountOfDrinkWater === 0}
-          >
-            Drink
-          </Button>
+          />
         </AbsoluteBox>
       </ModalContent>
     </Modal>
