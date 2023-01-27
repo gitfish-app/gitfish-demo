@@ -4,7 +4,7 @@ import BackgroundAquarium from '../../../components/mobile/userRegistration/Back
 import PathContents from '../../../components/mobile/userRegistration/PathContents';
 
 const PAGE_LIST = [
-  'gendar',
+  'gender',
   'weight',
   'height',
   'age',
