@@ -4,7 +4,12 @@ import FormButton from '../../components/mobile/Auth/FormButton';
 import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 
+import { useSignInWithGithub } from 'react-firebase-hooks/auth';
+import { auth } from '../../libs/firebase';
+
 const LogIn: FC = () => {
+  const [signInWithGithub, user, loading, error] = useSignInWithGithub(auth);
+
   return (
     <MobileWrap>
       <Box
@@ -72,6 +77,7 @@ const LogIn: FC = () => {
               fontSize={'26px'}
             />
           }
+          onClick={() => signInWithGithub()}
         />
       </Box>
     </MobileWrap>
