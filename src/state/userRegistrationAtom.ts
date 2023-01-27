@@ -3,11 +3,11 @@ import { atom } from 'recoil';
 // NOTE: 必要に応じで全て変えてください
 
 type UserRegistration = {
-  gendar: 'woman' | 'man';
+  gender: 'woman' | 'man';
   weight: number;
   height: number;
   age: number;
-  daylyGoal: number;
+  dailyGoal: number;
   reminder: Reminder;
 };
 
