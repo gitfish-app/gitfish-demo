@@ -1,14 +1,20 @@
 import { Box, Image, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import FormButton from '../../components/mobile/Auth/FormButton';
 import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 
 import { useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
+import useGithubRepo from '../../hooks/data/useGithubRepo';
 
 const LogIn: FC = () => {
   const [signInWithGithub, user, loading, error] = useSignInWithGithub(auth);
+
+  const { repos } = useGithubRepo(user);
+
+  console.log(user);
+  console.log(repos);
 
   return (
     <MobileWrap>
