@@ -3,9 +3,8 @@ import { FC } from 'react';
 import FormButton from '../../components/mobile/Auth/FormButton';
 import MobileWrap from '../../components/mobile/MobileWrap';
 import AbsoluteButton from '../../components/reuse/AbsoluteButton';
-import AbsoluteImage from '../../components/reuse/AbsoluteImage';
 
-const SignUp: FC = () => {
+const LogIn: FC = () => {
   return (
     <MobileWrap>
       <Box
@@ -50,7 +49,7 @@ const SignUp: FC = () => {
         px={'30px'}
       >
         <Text fontSize={'30px'} fontWeight={'bold'} color={'#D3EDFB'}>
-          Sign up
+          Log in
         </Text>
         <FormButton
           text={'Continue with GitHub'}
@@ -74,20 +73,9 @@ const SignUp: FC = () => {
             />
           }
         />
-        <Text
-          fontSize={'14px'}
-          color={'#707F95'}
-          textAlign={'center'}
-          mt={'30px'}
-        >
-          Already have an account?{' '}
-          <Box as={'span'} color={'#006EFB'}>
-            Sign In
-          </Box>
-        </Text>
       </Box>
     </MobileWrap>
   );
 };
 
-export default SignUp;
+export default LogIn;
