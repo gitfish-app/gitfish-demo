@@ -7,10 +7,19 @@ import Title from '../Title';
 
 const Index: FC = () => {
   const router = useRouter();
+
   return (
     <>
       <ProgressHeader progress={2} router={router} />
       <Title title={'What’s Your Height?'} />
+      <AbsoluteBox
+        w={'100%'}
+        pos={'absolute'}
+        top={'280px'}
+        display={'flex'}
+        justifyContent={'center'}
+        zIndex={'20'}
+      ></AbsoluteBox>
       <AbsoluteBox
         w={'100%'}
         px={'30px'}
