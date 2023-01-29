@@ -53,7 +53,7 @@ const Index: FC = () => {
       >
         <DefaultButton
           text={'Next'}
-          onClick={() => router.push('/mobile/user-registration/daily-goal')}
+          onClick={() => router.push('/mobile/user-registration/reminder-time')}
         />
       </AbsoluteBox>
     </>
