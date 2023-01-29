@@ -1,12 +1,23 @@
+import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import userRegistrationAtom from '../../../../state/userRegistrationAtom';
 import AbsoluteBox from '../../../reuse/AbsoluteBox';
 import DefaultButton from '../../../reuse/DefaultButton';
+import NumberInput from '../NumberInput';
 import ProgressHeader from '../ProgressHeader';
 import Title from '../Title';
 
 const Index: FC = () => {
   const router = useRouter();
+
+  const setUserRegistration = useSetRecoilState(userRegistrationAtom);
+  const [value, setValue] = useState(160);
+
+  useEffect(() => {
+    setUserRegistration((d) => ({ ...d, height: value }));
+  }, [value]);
 
   return (
     <>
@@ -19,7 +30,9 @@ const Index: FC = () => {
         display={'flex'}
         justifyContent={'center'}
         zIndex={'20'}
-      ></AbsoluteBox>
+      >
+        <NumberInput value={value} setValue={setValue} unit={'cm'} />
+      </AbsoluteBox>
       <AbsoluteBox
         w={'100%'}
         px={'30px'}
@@ -31,7 +44,7 @@ const Index: FC = () => {
       >
         <DefaultButton
           text={'Next'}
-          onClick={() => router.push('/mobile/user-registration/height')}
+          onClick={() => router.push('/mobile/user-registration/age')}
         />
       </AbsoluteBox>
     </>
