@@ -5,14 +5,15 @@ type Props = {
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
   unit?: string;
+  w?: string;
 };
 
-const NumberInput: FC<Props> = ({ value, setValue, unit }) => {
+const NumberInput: FC<Props> = ({ value, setValue, unit, w }) => {
   return (
     <Box pos={'relative'}>
       <Box
         as={'input'}
-        w={'120px'}
+        w={w ? w : '120px'}
         color={'#D3EDFB'}
         bgColor={'transparent'}
         value={value ? value.toString() : 0}
