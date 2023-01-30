@@ -8,19 +8,14 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  VStack,
-  Button,
-  SimpleGrid,
-  AspectRatio,
-  HStack,
 } from '@chakra-ui/react';
 import { ComponentProps, FC, useState } from 'react';
 import TabBackground from '../../../assets/icons/TabBackground';
 import TabCharacter from '../../../assets/icons/TabCharacter';
 import TabSkin from '../../../assets/icons/TabSkin';
-import AbsoluteBox from '../../reuse/AbsoluteBox';
 import AbsoluteButton from '../../reuse/AbsoluteButton';
 import AbsoluteImage from '../../reuse/AbsoluteImage';
+import CharacterPanel from './CharacterPanel/CharacterPanel';
 import SkinPanel from './SkinPanel';
 
 const DEFAULT_INDEX = 1;
@@ -91,8 +86,8 @@ const HamburgerModal: FC<Props> = ({ isOpen, onClose }) => {
               ))}
             </TabList>
             <TabPanels>
-              <TabPanel>
-                <Text>Unimplemented</Text>
+              <TabPanel bgColor={'#050732'} p={'0'}>
+                <CharacterPanel />
               </TabPanel>
 
               <TabPanel bgColor={'#050732'} p={'0'}>
