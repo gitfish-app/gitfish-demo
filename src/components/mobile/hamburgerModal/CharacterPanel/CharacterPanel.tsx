@@ -31,7 +31,7 @@ const CharacterPanel: FC = () => {
       </Text>
       <SimpleGrid spacing={'14px'} column={2} mt={'24px'}>
         <CharacterCard
-          fishImgSrc={''}
+          fishImgSrc={'/assets/demo-collection_preview.png'}
           fishName={'test'}
           commitCount={30}
           mainLanguage={'JavaScript'}
