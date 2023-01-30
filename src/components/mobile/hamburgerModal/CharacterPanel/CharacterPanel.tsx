@@ -1,5 +1,6 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { Box, Flex, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import { FC, useState } from 'react';
+import CharacterCard from './CharacterCard';
 import FishCount from './FishCount';
 
 const CharacterPanel: FC = () => {
@@ -28,6 +29,15 @@ const CharacterPanel: FC = () => {
       <Text color={'#D3EDFB'} fontSize={'14px'} mt={'6px'}>
         ギットハブのこと説明するギットハブのこと説明す目標を達成してキャラクターを集めよう！
       </Text>
+      <SimpleGrid spacing={'14px'} column={2} mt={'24px'}>
+        <CharacterCard
+          fishImgSrc={''}
+          fishName={'test'}
+          commitCount={30}
+          mainLanguage={'JavaScript'}
+          rate={75}
+        />
+      </SimpleGrid>
     </Box>
   );
 };
