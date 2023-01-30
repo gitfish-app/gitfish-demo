@@ -15,12 +15,12 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { ComponentProps, FC, useState } from 'react';
-import TabBackground from '../../assets/icons/TabBackground';
-import TabCharacter from '../../assets/icons/TabCharacter';
-import TabSkin from '../../assets/icons/TabSkin';
-import AbsoluteBox from '../reuse/AbsoluteBox';
-import AbsoluteButton from '../reuse/AbsoluteButton';
-import AbsoluteImage from '../reuse/AbsoluteImage';
+import TabBackground from '../../../assets/icons/TabBackground';
+import TabCharacter from '../../../assets/icons/TabCharacter';
+import TabSkin from '../../../assets/icons/TabSkin';
+import AbsoluteBox from '../../reuse/AbsoluteBox';
+import AbsoluteButton from '../../reuse/AbsoluteButton';
+import AbsoluteImage from '../../reuse/AbsoluteImage';
 
 const DEFAULT_INDEX = 1;
 

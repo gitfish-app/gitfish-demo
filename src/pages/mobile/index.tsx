@@ -14,7 +14,7 @@ import hasPresentNotificationSelector from '../../state/hasPresentNotificationSe
 import { useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
-import HamburgerModal from '../../components/mobile/HamburgerModal';
+import HamburgerModal from '../../components/mobile/hamburgerModal/HamburgerModal';
 
 const Index: NextPage = () => {
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
