@@ -21,7 +21,7 @@ const TimePicker: FC<Props> = ({ time, setTime }) => {
         _focus={{ outline: 'none' }}
         value={time.hour}
         onChange={(e: any) =>
-          setTime((pre) => ({ ...pre, hour: e.currentTarget.value }))
+          setTime((pre) => ({ ...pre, hour: e.target.value }))
         }
       />
       <Box as={'span'} color={'#D3EDFB'} fontSize={'32px'}>
@@ -38,7 +38,7 @@ const TimePicker: FC<Props> = ({ time, setTime }) => {
         _focus={{ outline: 'none' }}
         value={time.min}
         onChange={(e: any) =>
-          setTime((pre) => ({ ...pre, min: e.currentTarget.value }))
+          setTime((pre) => ({ ...pre, min: e.target.value }))
         }
       />
     </Box>
