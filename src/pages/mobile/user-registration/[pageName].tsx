@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
+import { useRecoilValue } from 'recoil';
 import MobileWrap from '../../../components/mobile/MobileWrap';
 import BackgroundAquarium from '../../../components/mobile/userRegistration/BackgroundAquarium';
 import PathContents from '../../../components/mobile/userRegistration/PathContents';
+import userRegistrationAtom from '../../../state/userRegistrationAtom';
 
 const PAGE_LIST = [
   'gender',
@@ -17,6 +19,9 @@ export type PageName = typeof PAGE_LIST[number];
 type Props = { pageName: PageName };
 
 const Index: NextPage<Props> = ({ pageName }) => {
+  const urState = useRecoilValue(userRegistrationAtom);
+  console.log(urState);
+
   return (
     <MobileWrap>
       <BackgroundAquarium />

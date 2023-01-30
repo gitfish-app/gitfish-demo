@@ -1,11 +1,16 @@
 import { Image, Text, VStack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import userRegistrationAtom from '../../../../state/userRegistrationAtom';
 
 type Props = {
   gender: 'woman' | 'man';
 };
 
 const GenderButton: FC<Props> = ({ gender }) => {
+  const [selected, setSelected] = useState<boolean>(false);
+  const setUserRegistration = useSetRecoilState(userRegistrationAtom);
+
   return (
     <VStack
       as={'button'}
@@ -13,6 +18,10 @@ const GenderButton: FC<Props> = ({ gender }) => {
       bg={'#0E2144'}
       p={'16px'}
       borderRadius={'16px'}
+      border={selected ? '1px solid #006EFB' : null}
+      onFocus={() => setSelected(true)}
+      onBlur={() => setSelected(false)}
+      onClick={() => setUserRegistration((pre) => ({ ...pre, gender }))}
     >
       <Image
         src={`/assets/mobile-user_registration_${gender}.png`}
