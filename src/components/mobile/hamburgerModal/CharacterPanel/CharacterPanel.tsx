@@ -29,7 +29,7 @@ const CharacterPanel: FC = () => {
       <Text color={'#D3EDFB'} fontSize={'14px'} mt={'6px'}>
         ギットハブのこと説明するギットハブのこと説明す目標を達成してキャラクターを集めよう！
       </Text>
-      <SimpleGrid spacing={'14px'} column={2} mt={'24px'}>
+      <Flex flexWrap={'wrap'} gap={'14px'} mt={'24px'}>
         <CharacterCard
           fishImgSrc={'/assets/demo-collection_preview.png'}
           fishName={'test'}
@@ -37,7 +37,21 @@ const CharacterPanel: FC = () => {
           mainLanguage={'JavaScript'}
           rate={75}
         />
-      </SimpleGrid>
+        <CharacterCard
+          fishImgSrc={'/assets/demo-collection_preview.png'}
+          fishName={'test'}
+          commitCount={30}
+          mainLanguage={'Swift'}
+          rate={50}
+        />
+        <CharacterCard
+          fishImgSrc={'/assets/demo-collection_preview.png'}
+          fishName={'test'}
+          commitCount={30}
+          mainLanguage={'PHP'}
+          rate={90}
+        />
+      </Flex>
     </Box>
   );
 };
