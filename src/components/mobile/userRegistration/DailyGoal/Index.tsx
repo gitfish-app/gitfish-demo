@@ -15,7 +15,7 @@ const Index: FC = () => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (userRegistration.weight) {
+    if (userRegistration) {
       setValue(() => dailyGoalCalc(userRegistration.weight));
     }
   }, []);

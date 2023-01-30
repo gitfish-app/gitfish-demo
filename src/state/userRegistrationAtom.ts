@@ -14,7 +14,7 @@ type UserRegistration = {
 type Reminder = {
   startActiveTime: `${string}:${string}`;
   endActiveTime: `${string}:${string}`;
-  interval: number;
+  interval: string;
 };
 
 const userRegistrationAtom = atom<UserRegistration>({
