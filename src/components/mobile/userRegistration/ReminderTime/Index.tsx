@@ -128,10 +128,7 @@ const Index: FC = () => {
         bottom={'150px'}
         zIndex={'20'}
       >
-        <DefaultButton
-          text={'Next'}
-          onClick={() => router.push('/mobile/user-registration/reminder-time')}
-        />
+        <DefaultButton text={'Next'} onClick={() => router.push('/mobile/')} />
       </AbsoluteBox>
     </>
   );

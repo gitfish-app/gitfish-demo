@@ -13,10 +13,10 @@ const LogIn: FC = () => {
   const router = useRouter();
   const [signInWithGithub, user, loading, error] = useSignInWithGithub(auth);
 
-  const { repos } = useGithubRepo(user);
+  // const { repos } = useGithubRepo(user);
 
-  console.log(user);
-  console.log(repos);
+  // console.log(user);
+  // console.log(repos);
 
   useEffect(() => {
     if (user) {
