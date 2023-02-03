@@ -32,21 +32,21 @@ const CharacterPanel: FC = () => {
       <Flex flexWrap={'wrap'} gap={'14px'} mt={'24px'}>
         <CharacterCard
           fishImgSrc={'/assets/demo-collection_preview.png'}
-          fishName={'test'}
+          fishName={'gitfish'}
           commitCount={30}
           mainLanguage={'JavaScript'}
           rate={75}
         />
         <CharacterCard
-          fishImgSrc={'/assets/demo-collection_preview.png'}
-          fishName={'test'}
+          fishImgSrc={'/assets/demo-mobile_moving_fish_n0.png'}
+          fishName={'creative-work'}
           commitCount={30}
           mainLanguage={'Swift'}
           rate={50}
         />
         <CharacterCard
-          fishImgSrc={'/assets/demo-collection_preview.png'}
-          fishName={'test'}
+          fishImgSrc={'/assets/demo-pc_moving_fish_n2.png'}
+          fishName={'team'}
           commitCount={30}
           mainLanguage={'PHP'}
           rate={90}
