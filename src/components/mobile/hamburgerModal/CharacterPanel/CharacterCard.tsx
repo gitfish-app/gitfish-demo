@@ -9,6 +9,7 @@ type Props = {
   commitCount: number;
   mainLanguage: string;
   rate: number;
+  isInAquarium?: boolean;
 };
 
 const CharacterCard: FC<Props> = ({
@@ -17,6 +18,7 @@ const CharacterCard: FC<Props> = ({
   commitCount,
   mainLanguage,
   rate,
+  isInAquarium,
 }) => {
   return (
     <Box
@@ -26,9 +28,35 @@ const CharacterCard: FC<Props> = ({
       alignItems={'center'}
       bgColor={'#0E2144'}
       borderRadius={'12px'}
+      pos={'relative'}
     >
-      <Box mt={'16px'} w={'122px'} height={'80px'}>
-        <Image src={fishImgSrc} objectFit={'contain'} />
+      {isInAquarium ? (
+        <Box
+          w={'22px'}
+          h={'22px'}
+          borderRadius={'9999px'}
+          bgColor={'#29C8A0'}
+          pos={'absolute'}
+          top={'10px'}
+          left={'10px'}
+          display={'grid'}
+          placeItems={'center'}
+        >
+          <Image
+            src={'/assets/system-check-icon-uncolor.svg'}
+            w={'60%'}
+            h={'60%'}
+          />
+        </Box>
+      ) : null}
+      <Box
+        mt={'16px'}
+        w={'122px'}
+        height={'80px'}
+        display={'grid'}
+        placeItems={'center'}
+      >
+        <Image src={fishImgSrc} w={'90%'} h={'90%'} objectFit={'scale-down'} />
       </Box>
       <Box
         display={'flex'}

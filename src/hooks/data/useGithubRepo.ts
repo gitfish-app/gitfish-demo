@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { githubApiInstance } from '../../constant/api';
+import userReposDataAtom from '../../state/userReposDataAtom';
 
 const useGithubRepo = (user: any | undefined) => {
+  const setUserReposData = useSetRecoilState(userReposDataAtom);
   const [repos, setRepos] = useState<any>('init');
 
   const getGithubReposPage = async (url) => {
@@ -39,6 +42,7 @@ const useGithubRepo = (user: any | undefined) => {
       if (user) {
         const d = await getGithubRepo();
         setRepos(() => d);
+        setUserReposData(() => d);
       } else {
         setRepos(() => 'no repo');
       }

@@ -11,15 +11,19 @@ import Aquarium from '../../components/mobile/Aquarium';
 import achievementRateSelector from '../../state/achievementRateSelector';
 import AchievementModal from '../../components/mobile/AchievementModal';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
 import HamburgerModal from '../../components/mobile/hamburgerModal/HamburgerModal';
 import useGithubRepo from '../../hooks/data/useGithubRepo';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
+import userDataAtom from '../../state/userDataAtom';
+import { useRouter } from 'next/router';
 
 const Index: NextPage = () => {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
@@ -31,6 +35,12 @@ const Index: NextPage = () => {
   const hamburgerModalHandler = useDisclosure();
 
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
+
+  useEffect(() => {
+    // if (!user) {
+    //   router.replace('/mobile/start');
+    // }
+  }, []);
 
   return (
     <MobileWrap>
