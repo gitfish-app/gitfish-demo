@@ -48,14 +48,14 @@ const RepositorySelectBottomSheet: FC<Props> = ({
       {bottomSheetPageCount === 0 && (
         <Repositories
           incrementPageCount={incrementPageCount}
-          repositories={mockReposData}
+          repositories={userReposData}
           selectRepositoryId={selectRepositoryId}
           setSelectRepositoryId={setSelectRepositoryId}
         />
       )}
       {bottomSheetPageCount === 1 && (
         <Result
-          selectRepository={mockReposData.find(
+          selectRepository={userReposData.find(
             (repository) => repository.id.toString() === selectRepositoryId,
           )}
           characterId={'0'}

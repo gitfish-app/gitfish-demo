@@ -16,6 +16,7 @@ import characterProperties from '../../../util/characterProperties';
 import { GithubRepoData } from '../../../types/githubRepoDataType';
 import useGithubSelectedRepo from '../../../hooks/data/useGithubSelectedRepo';
 import Link from 'next/link';
+import { deviconNameAdjustment } from '../../../util/deviconNameAdjustment';
 
 type Props = {
   resetPageCount: () => void;
@@ -73,7 +74,9 @@ const Result: FC<Props> = ({
                 <HStack key={language.language}>
                   <Box
                     as={'i'}
-                    className={`devicon-${language.language.toLowerCase()}-plain colored`}
+                    className={`devicon-${deviconNameAdjustment(
+                      language.language,
+                    ).toLowerCase()}-plain colored`}
                     fontSize={'28px'}
                   />
                   <LanguageRateBar
@@ -99,8 +102,8 @@ const Result: FC<Props> = ({
       <Link href={selectRepository.html_url} target={'_blank'}>
         <Button
           onClick={() => {
-            closeBottomSheet();
-            resetPageCount();
+            // closeBottomSheet();
+            // resetPageCount();
           }}
           iconUrl={'/assets/system-button_source_icon.svg'}
           buttonMessage={'See the source code'}
