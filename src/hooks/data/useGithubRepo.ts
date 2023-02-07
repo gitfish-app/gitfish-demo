@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { githubApiInstance } from '../../constant/api';
 import userReposDataAtom from '../../state/userReposDataAtom';
+import { GithubRepoData } from '../../types/githubRepoDataType';
 
 const useGithubRepo = (screenName: string | undefined) => {
   const [userReposData, setUserReposData] = useRecoilState(userReposDataAtom);

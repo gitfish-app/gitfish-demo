@@ -12,6 +12,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.9.0",
     "axios": "^1.2.5",
+    "date-fns": "^2.29.3",
     "devicon": "^2.15.1",
     "firebase": "^9.16.0",
     "framer-motion": "^6.3.0",

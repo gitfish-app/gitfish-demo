@@ -7,6 +7,7 @@ import Result from './Result';
 import repositories from '../../../mockdata/repositories';
 import { useRecoilValue } from 'recoil';
 import userReposDataAtom from '../../../state/userReposDataAtom';
+import { mockReposData } from '../../../mockdata/repos';
 
 type Props = {
   isOpenBottomSheet: boolean;
@@ -21,7 +22,7 @@ const RepositorySelectBottomSheet: FC<Props> = ({
   const [sheetTopMarginValue, setSheetTopMarginValue] = useState(80);
   const [selectRepositoryId, setSelectRepositoryId] = useState<string>();
 
-  // const userReposData = useRecoilValue(userReposDataAtom)
+  const userReposData = useRecoilValue(userReposDataAtom);
 
   const incrementPageCount = () => {
     setSheetTopMarginValue(180);
@@ -47,15 +48,15 @@ const RepositorySelectBottomSheet: FC<Props> = ({
       {bottomSheetPageCount === 0 && (
         <Repositories
           incrementPageCount={incrementPageCount}
-          repositories={repositories}
+          repositories={mockReposData}
           selectRepositoryId={selectRepositoryId}
           setSelectRepositoryId={setSelectRepositoryId}
         />
       )}
       {bottomSheetPageCount === 1 && (
         <Result
-          selectRepository={repositories.find(
-            (repository) => repository.id === selectRepositoryId,
+          selectRepository={mockReposData.find(
+            (repository) => repository.id.toString() === selectRepositoryId,
           )}
           characterId={'0'}
           resetPageCount={resetPageCount}

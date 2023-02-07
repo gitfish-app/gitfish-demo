@@ -26,6 +26,7 @@ const Index: NextPage = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
   const githubScreenName = useRecoilValue(githubScreenNameAtom);
+  const userReposData = useRecoilValue(userReposDataAtom);
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
@@ -42,6 +43,8 @@ const Index: NextPage = () => {
 
   useEffect(() => {
     console.log(repos);
+    console.log(userReposData);
+
     // if (!user) {
     //   router.replace('/mobile/start');
     // }

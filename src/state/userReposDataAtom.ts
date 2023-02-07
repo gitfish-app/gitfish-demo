@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
+import { GithubRepoData } from '../types/githubRepoDataType';
 
-const userReposDataAtom = atom<any | undefined>({
+const userReposDataAtom = atom<GithubRepoData[] | undefined>({
   key: 'userReposDataAtom',
   default: undefined,
 });
