@@ -5,6 +5,8 @@ import { BottomSheet as ReactSpringBottomSheet } from 'react-spring-bottom-sheet
 import Repositories from './Repositories';
 import Result from './Result';
 import repositories from '../../../mockdata/repositories';
+import { useRecoilValue } from 'recoil';
+import userReposDataAtom from '../../../state/userReposDataAtom';
 
 type Props = {
   isOpenBottomSheet: boolean;
@@ -18,6 +20,8 @@ const RepositorySelectBottomSheet: FC<Props> = ({
   const [bottomSheetPageCount, setBottomSheetPageCount] = useState(0);
   const [sheetTopMarginValue, setSheetTopMarginValue] = useState(80);
   const [selectRepositoryId, setSelectRepositoryId] = useState<string>();
+
+  // const userReposData = useRecoilValue(userReposDataAtom)
 
   const incrementPageCount = () => {
     setSheetTopMarginValue(180);

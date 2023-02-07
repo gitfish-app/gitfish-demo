@@ -15,15 +15,17 @@ import { useEffect, useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
 import HamburgerModal from '../../components/mobile/hamburgerModal/HamburgerModal';
-import useGithubRepo from '../../hooks/data/useGithubRepo';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
-import userDataAtom from '../../state/userDataAtom';
 import { useRouter } from 'next/router';
+import useGithubRepo from '../../hooks/data/useGithubRepo';
+import githubScreenNameAtom from '../../state/githubScreenNameAtom';
+import userReposDataAtom from '../../state/userReposDataAtom';
 
 const Index: NextPage = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
+  const githubScreenName = useRecoilValue(githubScreenNameAtom);
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
@@ -36,11 +38,14 @@ const Index: NextPage = () => {
 
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
 
+  const { repos } = useGithubRepo(githubScreenName);
+
   useEffect(() => {
+    console.log(repos);
     // if (!user) {
     //   router.replace('/mobile/start');
     // }
-  }, []);
+  }, [repos]);
 
   return (
     <MobileWrap>
