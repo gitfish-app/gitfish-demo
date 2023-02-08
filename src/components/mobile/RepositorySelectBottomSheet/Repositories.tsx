@@ -12,16 +12,17 @@ import {
   Box,
   Text,
 } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { Dispatch, FC, SetStateAction } from 'react';
 import githubColors from '../../../constant/githubColors';
-import { Repository } from '../../../mockdata/repositories';
+import { GithubRepoData } from '../../../types/githubRepoDataType';
 import Button from './Button';
 
 type Props = {
   incrementPageCount: () => void;
   selectRepositoryId: string;
   setSelectRepositoryId: Dispatch<SetStateAction<string>>;
-  repositories: Repository[];
+  repositories: GithubRepoData[];
 };
 
 const Repositories: FC<Props> = ({
@@ -40,7 +41,7 @@ const Repositories: FC<Props> = ({
       <Text fontWeight={'bold'} fontSize={'24px'}>
         Repository
       </Text>
-      <TableContainer w={'100%'}>
+      <TableContainer w={'100%'} overflowY={'scroll'} h={'100%'}>
         <Table>
           <Tbody>
             {repositories.map((repository) => (
@@ -50,12 +51,20 @@ const Repositories: FC<Props> = ({
                     value={selectRepositoryId}
                     onChange={setSelectRepositoryId}
                   >
-                    <HStack justifyContent={'space-between'} as={'label'}>
+                    <HStack
+                      justifyContent={'space-between'}
+                      as={'label'}
+                      w={'100%'}
+                    >
                       <VStack alignItems={'flex-start'}>
                         <Text
                           color={'#006EFB'}
                           fontWeight={'medium'}
                           fontSize={'18px'}
+                          overflow={'hidden'}
+                          textOverflow={'ellipsis'}
+                          whiteSpace={'nowrap'}
+                          w={'12em'}
                         >
                           {repository.name}
                         </Text>
@@ -69,19 +78,26 @@ const Repositories: FC<Props> = ({
                               mr={'8px'}
                               borderRadius={'100%'}
                               bgColor={
-                                githubColors[repository.mainLanguage].color ??
-                                'red'
+                                githubColors[repository.language]
+                                  ? githubColors[repository.language].color
+                                  : 'gray.500'
                               }
                             />
-                            {repository.mainLanguage}
+                            {repository.language
+                              ? repository.language
+                              : 'other'}
                           </Text>
                           <Text color={'#707F95'} fontSize={'14px'}>
-                            Updated {repository.lastUpdate}
+                            Updated{' '}
+                            {format(
+                              new Date(repository.updated_at),
+                              'yyyy/MM/dd',
+                            )}
                           </Text>
                         </Flex>
                       </VStack>
                       <Radio
-                        value={repository.id}
+                        value={repository.id.toString()}
                         size="md"
                         colorScheme="white"
                         defaultChecked

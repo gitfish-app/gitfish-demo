@@ -6,20 +6,24 @@ import AbsoluteButton from '../../components/reuse/AbsoluteButton';
 
 import { useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
-import useGithubRepo from '../../hooks/data/useGithubRepo';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import githubScreenNameAtom from '../../state/githubScreenNameAtom';
 
 const LogIn: FC = () => {
   const router = useRouter();
+  const [_githubScreenName, setGithubScreenName] =
+    useRecoilState(githubScreenNameAtom);
   const [signInWithGithub, user, loading, error] = useSignInWithGithub(auth);
-
-  // const { repos } = useGithubRepo(user);
-
-  // console.log(user);
-  // console.log(repos);
 
   useEffect(() => {
     if (user) {
+      const githubLoginUserInfo = user as any;
+      setGithubScreenName(
+        () =>
+          githubLoginUserInfo.user.reloadUserInfo.providerUserInfo[0]
+            .screenName as string,
+      );
       router.replace('/mobile/user-registration/gender');
     }
   }, [user]);

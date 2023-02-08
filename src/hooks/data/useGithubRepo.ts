@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { githubApiInstance } from '../../constant/api';
+import userReposDataAtom from '../../state/userReposDataAtom';
+import { GithubRepoData } from '../../types/githubRepoDataType';
 
-const useGithubRepo = (user: any | undefined) => {
+const useGithubRepo = (screenName: string | undefined) => {
+  const [userReposData, setUserReposData] = useRecoilState(userReposDataAtom);
   const [repos, setRepos] = useState<any>('init');
 
   const getGithubReposPage = async (url) => {
@@ -23,7 +27,7 @@ const useGithubRepo = (user: any | undefined) => {
   };
 
   const getGithubRepo = async () => {
-    let url = `/users/${user.user.reloadUserInfo.providerUserInfo[0].screenName}/repos`;
+    let url = `/users/${screenName}/repos`;
     const array = [];
     while (url) {
       const { next, data } = await getGithubReposPage(url);
@@ -36,14 +40,17 @@ const useGithubRepo = (user: any | undefined) => {
 
   useEffect(() => {
     (async () => {
-      if (user) {
+      if (userReposData) {
+        setRepos(() => 'recoil cache loaded');
+      } else if (screenName) {
         const d = await getGithubRepo();
-        setRepos(() => d);
+        setRepos(() => 'set data to recoil state');
+        setUserReposData(() => d);
       } else {
-        setRepos(() => 'no repo');
+        setRepos(() => 'no repos');
       }
     })();
-  }, [user]);
+  }, [screenName]);
 
   return { repos };
 };

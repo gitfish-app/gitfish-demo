@@ -11,15 +11,22 @@ import Aquarium from '../../components/mobile/Aquarium';
 import achievementRateSelector from '../../state/achievementRateSelector';
 import AchievementModal from '../../components/mobile/AchievementModal';
 import hasPresentNotificationSelector from '../../state/hasPresentNotificationSelector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DrinkButton from '../../components/mobile/DrinkButton';
 import RepositorySelectBottomSheet from '../../components/mobile/RepositorySelectBottomSheet';
 import HamburgerModal from '../../components/mobile/hamburgerModal/HamburgerModal';
-import useGithubRepo from '../../hooks/data/useGithubRepo';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../libs/firebase';
+import { useRouter } from 'next/router';
+import useGithubRepo from '../../hooks/data/useGithubRepo';
+import githubScreenNameAtom from '../../state/githubScreenNameAtom';
+import userReposDataAtom from '../../state/userReposDataAtom';
 
 const Index: NextPage = () => {
+  const router = useRouter();
+  const [user] = useAuthState(auth);
+  const githubScreenName = useRecoilValue(githubScreenNameAtom);
+  const userReposData = useRecoilValue(userReposDataAtom);
   const [amountOfCurrentWater, setAmountCurrentWater] = useRecoilState(
     amountOfCurrentWaterAtom,
   );
@@ -31,6 +38,17 @@ const Index: NextPage = () => {
   const hamburgerModalHandler = useDisclosure();
 
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState(false);
+
+  const { repos } = useGithubRepo(githubScreenName);
+
+  useEffect(() => {
+    console.log(repos);
+    console.log(userReposData);
+
+    // if (!user) {
+    //   router.replace('/mobile/start');
+    // }
+  }, [repos]);
 
   return (
     <MobileWrap>
