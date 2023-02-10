@@ -4,7 +4,6 @@ import 'react-spring-bottom-sheet/dist/style.css';
 import { BottomSheet as ReactSpringBottomSheet } from 'react-spring-bottom-sheet';
 import Repositories from './Repositories';
 import Result from './Result';
-import repositories from '../../../mockdata/repositories';
 import { useRecoilValue } from 'recoil';
 import userReposDataAtom from '../../../state/userReposDataAtom';
 import { mockReposData } from '../../../mockdata/repos';

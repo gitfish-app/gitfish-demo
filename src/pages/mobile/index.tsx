@@ -45,9 +45,9 @@ const Index: NextPage = () => {
     console.log(repos);
     console.log(userReposData);
 
-    // if (!user) {
-    //   router.replace('/mobile/start');
-    // }
+    if (!user) {
+      router.replace('/mobile/start');
+    }
   }, [repos]);
 
   return (

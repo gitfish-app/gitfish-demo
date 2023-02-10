@@ -3,7 +3,6 @@ import { useRecoilValue } from 'recoil';
 import MobileWrap from '../../../components/mobile/MobileWrap';
 import BackgroundAquarium from '../../../components/mobile/userRegistration/BackgroundAquarium';
 import PathContents from '../../../components/mobile/userRegistration/PathContents';
-import userDataAtom from '../../../state/userDataAtom';
 import userRegistrationAtom from '../../../state/userRegistrationAtom';
 
 const PAGE_LIST = [
